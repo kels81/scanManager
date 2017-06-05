@@ -1,0 +1,69 @@
+@mixin dashboard-login-view {
+
+  .loginview {
+    @include radial-gradient(circle at 50% 50%, scale-color($v-app-background-color, $lightness: -2%), scale-color($v-app-background-color, $lightness: -2% - valo-gradient-opacity()), $fallback: $v-app-background-color);
+    padding-top: 0 !important;
+    @include animation(valo-animate-in-fade 300ms 10ms backwards);
+
+    > .v-loading-indicator {
+      display: none !important;
+    }
+  }
+
+  .login-panel {
+    @include valo-panel-style;
+    padding: round($v-unit-size / 1.5) round($v-unit-size / 1.5);
+    min-width: $v-font-size * 13;
+    max-width: 90%;
+    @include animation(animate-in-scale-up 500ms 10ms backwards, valo-animate-in-fade 300ms 100ms backwards);
+
+    > .v-spacing {
+      height: round($v-unit-size / 2);
+    }
+
+    .labels {
+      display: block;
+
+      .h4 {
+        margin: 0;
+        vertical-align: baseline;
+      }
+
+      .h3 {
+        margin: 0;
+        float: right;
+      }
+    }
+
+    .fields .v-icon {
+      opacity: 0.3;
+    }
+
+    @include width-range($min: 0, $max: $v-unit-size * 14) {
+      .labels .h3 {
+        float: none;
+        display: block;
+        margin-top: .2em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .fields {
+        display: block;
+
+        .v-slot {
+          display: block;
+
+          .v-widget {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .v-ui[width-range~="0-800px"] .login-panel {
+    @include animation(animate-in-scale-up 500ms 10ms backwards, valo-animate-in-fade 300ms 100ms backwards);
+  }
+  
+}

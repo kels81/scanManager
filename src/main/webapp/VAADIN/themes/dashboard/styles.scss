@@ -1,0 +1,17 @@
+// Import all the mixins for this theme
+@import "addons.scss";
+@import "dashboard";
+
+.dashboard {
+  // Output the actual theme selectors
+  @include addons;
+  @include dashboard;
+}
+
+@include v-font(MaterialIcon, '../../../../dashboard/fonts_material/icomoon');
+@include v-font(Feather, '../../../../dashboard/fonts_feather/icomoon');
+@include v-font(Multimedia, '../../../../dashboard/fonts_multimedia/Flaticon');
+@include v-font(Ui_Kit, '../../../../dashboard/fonts_ui/Flaticon');
+@include v-font(Essential, '../../../../dashboard/fonts_essential/Flaticon');
+@include v-font(Human, '../../../../dashboard/fonts_human/Flaticon');
+@include v-font(SolidIcon, '../../../../dashboard/fonts_solid/Flaticon');
