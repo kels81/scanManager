@@ -1,27 +1,17 @@
 package com.mx.otac.scan.view.transactions;
 
 import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-
-import org.vaadin.maddon.FilterableListContainer;
 
 import com.google.common.eventbus.Subscribe;
 import com.mx.otac.scan.util.Constantes;
 import com.mx.otac.scan.util.FileTransactions;
-import com.vaadin.data.Container.Filter;
 import com.vaadin.data.Container.Filterable;
 import com.vaadin.data.Item;
 import com.mx.otac.scan.data.DirectoryContentData;
-import com.mx.otac.scan.domain.Transaction;
 import com.mx.otac.scan.event.DashboardEvent.BrowserResizeEvent;
 import com.mx.otac.scan.event.DashboardEventBus;
 import com.mx.otac.scan.util.Components;
 import com.mx.otac.scan.util.Notifications;
-import com.vaadin.addon.contextmenu.ContextMenu;
-import com.vaadin.addon.contextmenu.Menu;
-import com.vaadin.addon.contextmenu.MenuItem;
 import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.event.FieldEvents;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
@@ -71,7 +61,7 @@ import org.apache.commons.lang3.StringUtils;
 @SuppressWarnings({"serial", "unchecked"})
 public final class TransactionsView extends VerticalLayout implements View {
 
-    private final Table table;
+    private Table table;
     private Window window;
     private Button save;
     private Button cancel;
@@ -150,37 +140,37 @@ public final class TransactionsView extends VerticalLayout implements View {
         filter.addTextChangeListener(new TextChangeListener() {
             @Override
             public void textChange(final TextChangeEvent event) {
-                Filterable data = (Filterable) table.getContainerDataSource();
-                data.removeAllContainerFilters();
-                data.addContainerFilter(new Filter() {
-                    @Override
-                    public boolean passesFilter(final Object itemId,
-                            final Item item) {
-
-                        if (event.getText() == null
-                                || event.getText().equals("")) {
-                            return true;
-                        }
-
-                        return filterByProperty("country", item,
-                                event.getText())
-                                || filterByProperty("city", item,
-                                        event.getText())
-                                || filterByProperty("title", item,
-                                        event.getText());
-
-                    }
-
-                    @Override
-                    public boolean appliesToProperty(final Object propertyId) {
-                        if (propertyId.equals("country")
-                                || propertyId.equals("city")
-                                || propertyId.equals("title")) {
-                            return true;
-                        }
-                        return false;
-                    }
-                });
+//                Filterable data = (Filterable) table.getContainerDataSource();
+//                data.removeAllContainerFilters();
+//                data.addContainerFilter(new Filter() {
+//                    @Override
+//                    public boolean passesFilter(final Object itemId,
+//                            final Item item) {
+//
+//                        if (event.getText() == null
+//                                || event.getText().equals("")) {
+//                            return true;
+//                        }
+//
+//                        return filterByProperty("country", item,
+//                                event.getText())
+//                                || filterByProperty("city", item,
+//                                        event.getText())
+//                                || filterByProperty("title", item,
+//                                        event.getText());
+//
+//                    }
+//
+//                    @Override
+//                    public boolean appliesToProperty(final Object propertyId) {
+//                        if (propertyId.equals("country")
+//                                || propertyId.equals("city")
+//                                || propertyId.equals("title")) {
+//                            return true;
+//                        }
+//                        return false;
+//                    }
+//                });
             }
         });
 
@@ -248,70 +238,8 @@ public final class TransactionsView extends VerticalLayout implements View {
         }
     }
 
-    private boolean filterByProperty(final String prop, final Item item,
-            final String text) {
-        if (item == null || item.getItemProperty(prop) == null
-                || item.getItemProperty(prop).getValue() == null) {
-            return false;
-        }
-        String val = item.getItemProperty(prop).getValue().toString().trim()
-                .toLowerCase();
-        if (val.contains(text.toLowerCase().trim())) {
-            return true;
-        }
-        return false;
-    }
-
     @Override
     public void enter(final ViewChangeEvent event) {
-    }
-
-    private class TempTransactionsContainer extends
-            FilterableListContainer<Transaction> {
-
-        public TempTransactionsContainer(
-                final Collection<Transaction> collection) {
-            super(collection);
-        }
-
-        // This is only temporarily overridden until issues with
-        // BeanComparator get resolved.
-        @Override
-        public void sort(final Object[] propertyId, final boolean[] ascending) {
-            final boolean sortAscending = ascending[0];
-            final Object sortContainerPropertyId = propertyId[0];
-            Collections.sort(getBackingList(), new Comparator<Transaction>() {
-                @Override
-                public int compare(final Transaction o1, final Transaction o2) {
-                    int result = 0;
-                    if ("time".equals(sortContainerPropertyId)) {
-                        result = o1.getTime().compareTo(o2.getTime());
-                    } else if ("country".equals(sortContainerPropertyId)) {
-                        result = o1.getCountry().compareTo(o2.getCountry());
-                    } else if ("city".equals(sortContainerPropertyId)) {
-                        result = o1.getCity().compareTo(o2.getCity());
-                    } else if ("theater".equals(sortContainerPropertyId)) {
-                        result = o1.getTheater().compareTo(o2.getTheater());
-                    } else if ("room".equals(sortContainerPropertyId)) {
-                        result = o1.getRoom().compareTo(o2.getRoom());
-                    } else if ("title".equals(sortContainerPropertyId)) {
-                        result = o1.getTitle().compareTo(o2.getTitle());
-                    } else if ("seats".equals(sortContainerPropertyId)) {
-                        result = new Integer(o1.getSeats()).compareTo(o2
-                                .getSeats());
-                    } else if ("price".equals(sortContainerPropertyId)) {
-                        result = new Double(o1.getPrice()).compareTo(o2
-                                .getPrice());
-                    }
-
-                    if (!sortAscending) {
-                        result *= -1;
-                    }
-                    return result;
-                }
-            });
-        }
-
     }
 
     public IndexedContainer crearContenedor() {
@@ -405,39 +333,6 @@ public final class TransactionsView extends VerticalLayout implements View {
         return btnMenu;
     }
 
-    private void fillMenu(ContextMenu menu, File file) {
-        //EDITAR
-        MenuItem editar = menu.addItem("Editar", e -> {
-            Notification.show(file.getName());
-//            Window w = createWindowEdit(file);
-//            UI.getCurrent().addWindow(w);
-//            w.focus();
-        });
-        editar.setIcon(FontAwesome.PENCIL);
-        //BORRAR
-        MenuItem borrar = menu.addItem("Eliminar", new Menu.Command() {
-            @Override
-            public void menuSelected(MenuItem e) {
-                Notification.show(file.getName());
-//                Window w = createWindowConfirm(file);
-//                UI.getCurrent().addWindow(w);
-//                w.focus();
-            }
-        });
-        borrar.setIcon(FontAwesome.TRASH);
-
-        // SEPARADOR
-        if (menu instanceof ContextMenu) {
-            ((ContextMenu) menu).addSeparator();
-        }
-        //MOVER-COPIAR
-        MenuItem moverCopiar = menu.addItem("Mover o Copiar", e -> {
-            Notification.show(file.getName());
-        });
-        moverCopiar.setIcon(FontAwesome.COPY);
-
-    }
-
     private Window createWindowEdit(File file) {
         window = new Window();
         window.addStyleName("createfolder-window");
@@ -507,7 +402,14 @@ public final class TransactionsView extends VerticalLayout implements View {
             String extension = file.getName().substring(file.getName().lastIndexOf('.') + 1);
             File newFile = new File(source.getParent().toString() + "\\" + newName + "." + extension);
 
-            fileTrans.renameFile(source, file, newFile);
+            Boolean confirm = fileTrans.renameFile(source, file, newFile);
+
+            if (confirm) {
+                this.uptadeTable();
+                notification.createSuccess("Se renombró el archivo correctamente: " + newName + "." + extension);
+            } else {
+                notification.createFailure("No se renombró el archivo");
+            }
 
             window.close();
         });
@@ -574,7 +476,14 @@ public final class TransactionsView extends VerticalLayout implements View {
         save.addClickListener((ClickEvent event) -> {
             Path source = Paths.get(file.getAbsolutePath());
 
-            fileTrans.deleteFile(source, file);
+            Boolean confirm = fileTrans.deleteFile(source, file);
+
+            if (confirm) {
+                this.uptadeTable();
+                notification.createSuccess("Se eliminó el archivo correctamente: " + file.getName());
+            } else {
+                notification.createFailure("No se elimino el archivo");
+            }
 
             window.close();
         });
@@ -589,6 +498,15 @@ public final class TransactionsView extends VerticalLayout implements View {
         content.addComponent(footer);
 
         return window;
+    }
+
+    private void uptadeTable() {
+
+        removeComponent(table);
+
+        table = buildTable();
+        addComponent(table);
+        setExpandRatio(table, 1);
     }
 
 }

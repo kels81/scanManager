@@ -16,25 +16,28 @@ import java.nio.file.Path;
  */
 public class FileTransactions {
 
-    public void deleteFile(Path sourceDir, File file) {
+    public Boolean deleteFile(Path sourceDir, File file) {
+        Boolean confirm = null;
         try {
             Files.delete(sourceDir);
-            
-            //notification.createSuccess("Se eliminó el archivo correctamente: " + file.getName());
+            confirm = Boolean.TRUE;
         } catch (IOException ex) {
-            //notification.createFailure("No se elimino el archivo");
+            confirm = Boolean.FALSE;
         }
+        return confirm;
     }
 
-    public void renameFile(Path sourceDir, File oldFile, File newFile) {
+    public Boolean renameFile(Path sourceDir, File oldFile, File newFile) {
+        Boolean confirm = null;
         try {
             oldFile.renameTo(newFile);
-            
+            confirm = Boolean.TRUE;
             //notification.createSuccess("Se renombró el archivo correctamente: " + oldFile.getName());
         } catch (Exception ex) {
+            confirm = Boolean.FALSE;
             //notification.createFailure("No se renombró el archivo");
         }
+        return confirm;
     }
 
-    
 }

@@ -16,8 +16,8 @@ import com.vaadin.ui.Notification;
 public class Notifications {
 
     public Notification createSuccess(String caption) {
-        Notification success = new Notification("");
-        success.setDescription(caption);
+        Notification success = new Notification(caption);
+        //success.setDescription(caption);
         success.setDelayMsec(2000);
         success.setStyleName("bar success small");
         success.setPosition(Position.TOP_CENTER);
