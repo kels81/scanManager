@@ -12,6 +12,7 @@ import com.mx.otac.scan.event.DashboardEvent.BrowserResizeEvent;
 import com.mx.otac.scan.event.DashboardEventBus;
 import com.mx.otac.scan.util.Components;
 import com.mx.otac.scan.util.Notifications;
+import com.vaadin.data.Container.Filter;
 import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.event.FieldEvents;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
@@ -65,11 +66,10 @@ public final class TransactionsView extends VerticalLayout implements View {
     private Window window;
     private Button save;
     private Button cancel;
-    private Button createReport;
 
     private File rootPath;
 
-    private static final String[] DEFAULT_COLLAPSIBLE = {"country", "city", "theater", "room", "title", "seats"};
+    private static final String[] DEFAULT_COLLAPSIBLE = {"fecha", "tamaño"};
 
     private final DirectoryContentData content = new DirectoryContentData();
     private final FileTransactions fileTrans = new FileTransactions();
@@ -98,7 +98,7 @@ public final class TransactionsView extends VerticalLayout implements View {
     }
 
     private Component buildToolbar() {
-        VerticalLayout header = new VerticalLayout();
+        HorizontalLayout header = new HorizontalLayout();
         header.addStyleName("viewheader");
         header.setSpacing(true);
         Responsive.makeResponsive(header);
@@ -109,72 +109,56 @@ public final class TransactionsView extends VerticalLayout implements View {
         title.addStyleName(ValoTheme.LABEL_NO_MARGIN);
         header.addComponent(title);
 
-        createReport = buildCreateReport();
-        HorizontalLayout tools = new HorizontalLayout(buildFilter(), createReport);
-        //HorizontalLayout tools = new HorizontalLayout(buildFilter());
+        HorizontalLayout tools = new HorizontalLayout(buildFilter());
         tools.setSpacing(true);
-        tools.setWidth(100.0f, Unit.PERCENTAGE);
         tools.addStyleName("toolbar");
-        //tools.setComponentAlignment(buildFilter(), Alignment.MIDDLE_LEFT);
-        //tools.setComponentAlignment(createReport, Alignment.MIDDLE_RIGHT);
         header.addComponent(tools);
 
         return header;
     }
 
-    private Button buildCreateReport() {
-        final Button createReport = new Button("Cambiar Nombre");
-        //createReport.setDescription("Create a new report from the selected transactions");
-        createReport.addClickListener(new ClickListener() {
-            @Override
-            public void buttonClick(final ClickEvent event) {
-                //createNewReportFromSelection();
-            }
-        });
-        createReport.setEnabled(false);
-        return createReport;
-    }
-
-    private Component buildFilter() {
+     private Component buildFilter() {
         final TextField filter = new TextField();
         filter.addTextChangeListener(new TextChangeListener() {
             @Override
             public void textChange(final TextChangeEvent event) {
-//                Filterable data = (Filterable) table.getContainerDataSource();
-//                data.removeAllContainerFilters();
-//                data.addContainerFilter(new Filter() {
-//                    @Override
-//                    public boolean passesFilter(final Object itemId,
-//                            final Item item) {
-//
-//                        if (event.getText() == null
-//                                || event.getText().equals("")) {
-//                            return true;
-//                        }
-//
-//                        return filterByProperty("country", item,
-//                                event.getText())
-//                                || filterByProperty("city", item,
-//                                        event.getText())
-//                                || filterByProperty("title", item,
-//                                        event.getText());
-//
-//                    }
-//
-//                    @Override
-//                    public boolean appliesToProperty(final Object propertyId) {
-//                        if (propertyId.equals("country")
-//                                || propertyId.equals("city")
-//                                || propertyId.equals("title")) {
-//                            return true;
-//                        }
-//                        return false;
-//                    }
-//                });
+                Filterable data = (Filterable) table.getContainerDataSource();
+                data.removeAllContainerFilters();
+                data.addContainerFilter(new Filter() {
+                    @Override
+                    public boolean passesFilter(final Object itemId,
+                            final Item item) {
+
+                        if (event.getText() == null
+                                || event.getText().equals("")) {
+                            return true;
+                        }
+
+                        return filterByProperty("nombre", item,
+                                event.getText());
+                    }
+
+                    private boolean filterByProperty(final String prop, final Item item,
+                            final String text) {
+                        if (item == null || item.getItemProperty(prop) == null
+                                || item.getItemProperty(prop).getValue() == null) {
+                            return false;
+                        }
+                        String val = item.getItemProperty(prop).getValue().toString().trim()
+                                .toLowerCase();
+                        return val.contains(text.toLowerCase().trim());
+                    }
+
+                    @Override
+                    public boolean appliesToProperty(Object propertyId) {
+                        return propertyId.equals("nombre");
+                    }
+                });
             }
         });
 
-        filter.setInputPrompt("Filter");
+        filter.setInputPrompt("Filtrar");
+        filter.setDescription("Filtrar por nombre del archivo");
         filter.setIcon(FontAwesome.SEARCH);
         filter.addStyleName(ValoTheme.TEXTFIELD_INLINE_ICON);
         filter.setWidth(100.0f, Unit.PERCENTAGE);
@@ -200,13 +184,20 @@ public final class TransactionsView extends VerticalLayout implements View {
         table.addStyleName(ValoTheme.TABLE_SMALL);
         table.setSelectable(false);
         table.setImmediate(true);
+        table.setSortEnabled(false);
 
-        table.setColumnAlignment("Tamaño", Align.RIGHT);
-        table.setColumnAlignment("Fecha Creación", Align.RIGHT);
+        table.setColumnAlignment("tamaño", Align.RIGHT);
+        table.setColumnAlignment("fecha", Align.RIGHT);
         table.setColumnAlignment(" ", Align.CENTER);
 
-        table.setColumnCollapsingAllowed(false);
-        table.setSortEnabled(false);
+        table.setColumnHeader("nombre", "Nombre Archivo");
+        table.setColumnHeader("fecha", "Fecha Creación");
+        table.setColumnHeader("tamaño", "Tamaño");
+
+        //PARA HACER RESPONSIVO LA TABLA
+        table.setColumnCollapsingAllowed(true);
+        table.setColumnCollapsible("nombre", false);
+        table.setColumnCollapsible(" ", false);
 
         table.refreshRowCache();
         table.setRowHeaderMode(Table.RowHeaderMode.INDEX);          //PARA ENUMERAR LAS FILAS
@@ -247,13 +238,10 @@ public final class TransactionsView extends VerticalLayout implements View {
         rootPath = new File(Constantes.ROOT_PATH);
         IndexedContainer idxCont = new IndexedContainer();
 
-        //idxCont.addContainerProperty("No.", Integer.class, "");
-        idxCont.addContainerProperty("Nombre", Label.class, "");
-        idxCont.addContainerProperty("Fecha Creación", String.class, "");
-        idxCont.addContainerProperty("Tamaño", String.class, "");
+        idxCont.addContainerProperty("nombre", Label.class, "");
+        idxCont.addContainerProperty("fecha", String.class, "");
+        idxCont.addContainerProperty("tamaño", String.class, "");
         idxCont.addContainerProperty(" ", MenuBar.class, "");
-
-        int contador = 1;
 
         List<File> files = content.directoryContents(rootPath);
 
@@ -263,10 +251,9 @@ public final class TransactionsView extends VerticalLayout implements View {
                 String fileSizeDisplay = FileUtils.byteCountToDisplaySize(fileSize);
 
                 Item item = idxCont.getItem(idxCont.addItem());
-                //item.getItemProperty("No.").setValue(contador++);
-                item.getItemProperty("Nombre").setValue(new Label(FontAwesome.FILE.getHtml() + " " + file.getName(), ContentMode.HTML));
-                item.getItemProperty("Fecha Creación").setValue(getAtributos(file));
-                item.getItemProperty("Tamaño").setValue(fileSizeDisplay);
+                item.getItemProperty("nombre").setValue(new Label(FontAwesome.FILE.getHtml() + " " + file.getName(), ContentMode.HTML));
+                item.getItemProperty("fecha").setValue(getAtributos(file));
+                item.getItemProperty("tamaño").setValue(fileSizeDisplay);
                 item.getItemProperty(" ").setValue(createButtonMenu(file));
             }
         }
@@ -312,13 +299,13 @@ public final class TransactionsView extends VerticalLayout implements View {
         btnMenu.addStyleName(ValoTheme.MENUBAR_BORDERLESS);
         MenuBar.MenuItem menu = btnMenu.addItem("", FontAwesome.ELLIPSIS_H, null);
         menu.addItem("Editar", FontAwesome.PENCIL, (MenuBar.MenuItem selectedItem) -> {
-            Notification.show(file.getName());
+            //Notification.show(file.getName());
             Window w = createWindowEdit(file);
             UI.getCurrent().addWindow(w);
             w.focus();
         });
         menu.addItem("Eliminar", FontAwesome.TRASH, (MenuBar.MenuItem selectedItem) -> {
-            Notification.show(file.getName());
+            //Notification.show(file.getName());
             Window w = createWindowConfirm(file);
             UI.getCurrent().addWindow(w);
             w.focus();
@@ -342,7 +329,6 @@ public final class TransactionsView extends VerticalLayout implements View {
         window.setResizable(false);
         window.setClosable(true);
         window.setHeight(90.0f, Sizeable.Unit.PERCENTAGE);
-        //window.setWidth(300.0f, Unit.PIXELS);
 
         VerticalLayout content = new VerticalLayout();
         content.setSizeFull();
@@ -356,7 +342,7 @@ public final class TransactionsView extends VerticalLayout implements View {
 
         /*[ NAMEFOLDER ]*/
         VerticalLayout body = new VerticalLayout();
-        body.setCaption("Renombrar");
+        body.setCaption("Editar");
         body.setSizeFull();
         body.setSpacing(true);
         body.setMargin(true);
@@ -501,7 +487,6 @@ public final class TransactionsView extends VerticalLayout implements View {
     }
 
     private void uptadeTable() {
-
         removeComponent(table);
 
         table = buildTable();
