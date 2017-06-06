@@ -11,6 +11,6 @@ package com.mx.otac.scan.util;
  */
 public class Constantes {
     
-    public static final String ROOT_PATH = "C:\\Users\\Edrd\\Documents\\GitHub\\fileManager\\Archivos"; 
+    public static final String ROOT_PATH = "C:\\Users\\OTAC\\Desktop\\BPM\\img"; 
         
 }
