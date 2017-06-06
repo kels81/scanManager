@@ -1,0 +1,18 @@
+{
+    "tipoDocumental": "Evidencia",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "actaComiteCompras",
+    "ruta": "Proveedores/@tipoProveedor/@idProveedor/@tipoOficina",
+    "checklistrelacionado": "CHKLST_VNDMG_PTPA",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "tipo",
+            "fieldKey": "tipoEvidencia",
+            "required": false
+        },{
+            "type": "date",
+	    "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaEvidencia",
+            "required": false
+        }]
+}

@@ -1,0 +1,12 @@
+{
+    "checkList": "CHKLST_PAG_PT_006",
+    "elementos": [{
+            "subTipoDocumental": "facturaEndosada",
+            "area": "Pagos",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "facturaPago",
+            "area": "Pagos",
+            "obligatorio": false            
+        }]
+}

@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Informe",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "avisoPrescripcion",
+    "ruta": "@numeroSiniestro/@area/@folioAsignacion/@tipoIndemnizacion/Documentos",
+    "checklistrelacionado": "CHKLST_VAL_PT_001",
+    "fields": [{
+            "type": "date",
+            "keyZbox": "fechaDocumento", 
+            "fieldKey": "fechaInforme",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioInforme",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoInforme",
+            "required": false
+        }]
+}

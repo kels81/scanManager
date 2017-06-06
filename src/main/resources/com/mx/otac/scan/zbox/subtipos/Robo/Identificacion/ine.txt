@@ -1,0 +1,18 @@
+{
+    "tipoDocumental": "Identificacion",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "ine",
+    "ruta": "@numeroSiniestro/Expediente Robo/Documentos",
+    "checklistrelacionado": "CHKLST_RB_001 CHKLST_PORT_VENDROB_006",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "tipoIdentificacion",
+            "fieldKey": "tipoIdentificacion",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaIdentificacion",
+            "required": false
+        }]
+}

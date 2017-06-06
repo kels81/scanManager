@@ -1,0 +1,43 @@
+{
+    "tipoDocumental": "Orden de Pago",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "soportePago",
+    "ruta": "@numeroSiniestro/Tramite/Incidente/TipoTramitePago/IdUnico/CostCategory/Documentos",
+    "checklistrelacionado": "CHKLST_PAG_PROV_038 CHKLST_PROV_LIQ_039 CHKLST_DA_TER_040 CHKLST_REM_VIAVIA_041 CHKLST_PAG_NDED_042 CHKLST_REM_GAS_043 CHKLST_PROV_CRIST_044 CHKLST_TPA_ADM_045 CHKLST_GAST_MEDI_046 CHKLST_REM_TRA_047",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "nombreBeneficiario",
+            "fieldKey": "beneficiario",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "cobertura",
+            "fieldKey": "cobertura",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaSoporte",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "monto",
+            "fieldKey": "montoPago",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "numeroPoliza",
+            "fieldKey": "poliza",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "numeroSiniestro",
+            "fieldKey": "siniestro",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoOrden",
+            "required": false
+        }]
+}

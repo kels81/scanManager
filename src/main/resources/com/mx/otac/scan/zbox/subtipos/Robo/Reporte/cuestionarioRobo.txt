@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Reporte",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "cuestionarioRobo",
+    "ruta": "@numeroSiniestro/Expediente Robo/Documentos",
+    "checklistrelacionado": "CHKLST_RB_001",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioReporte",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoReporte",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaReporte",
+            "required": false
+        }]
+}

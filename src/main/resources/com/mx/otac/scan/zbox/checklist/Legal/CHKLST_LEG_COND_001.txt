@@ -1,0 +1,24 @@
+{
+    "checkList": "CHKLST_LEG_COND_001",
+    "elementos": [{
+            "subTipoDocumental": "conclusionReclamoCONDUSEF",
+            "area": "Legal",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "documentacionAdicionalCasoCONDUSEF",
+            "area": "Legal",
+            "obligatorio": false        
+        }, {
+            "subTipoDocumental": "reclamacionAseguradoCONDUSEF",
+            "area": "Legal",
+            "obligatorio": false        
+        }, {
+            "subTipoDocumental": "facturaPagoAbogadoCONDUSEF",
+            "area": "Legal",
+            "obligatorio": false          
+        }, {
+            "subTipoDocumental": "informacionAtencionCONDUSEF",
+            "area": "Legal",
+            "obligatorio": false          
+        }]
+}

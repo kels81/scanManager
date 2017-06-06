@@ -1,0 +1,33 @@
+{
+    "tipoDocumental": "Evidencia",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "fotografiaArribo",
+    "ruta": "@numeroSiniestro/Expediente Técnico Daños Materiales/Ajuste/Evidencias/Arribo",
+    "checklistrelacionado": "CHKLST_AJT_ASG_001",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "tipo",
+            "fieldKey": "tipoEvidencia",
+            "required": false
+        },{
+            "type": "date",
+	    "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaEvidencia",
+            "required": false
+        },{
+            "type": "string",
+            "keyZbox": "latitud",
+            "fieldKey": "latitud",
+            "required": false
+        },{
+            "type": "string",
+            "keyZbox": "longitud",
+            "fieldKey": "longitud",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioEvidencia",
+            "required": false
+        }]
+}

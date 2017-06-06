@@ -1,0 +1,18 @@
+{
+    "tipoDocumental": "Identificacion",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "identificacionOficialNA_TE",
+    "ruta": "@numeroSiniestro/Tramite/@incidente/@tipoTramitePago/@idUnicoTramite/@costCategory/Documentos",
+    "checklistrelacionado": "CHKLST_PROV_LIQ_039 CHKLST_DA_TER_040 CHKLST_REM_VIAVIA_041 CHKLST_PAG_NDED_042 CHKLST_REM_GAS_043 CHKLST_PROV_CRIST_044 CHKLST_REM_PAGD_049 CHKLST_REM_PAGGM_050",
+    "fields": [{
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaIdentificacion",
+            "required": false
+        }, {
+            "type": "string",
+           "keyZbox": "tipoIdentificacion",
+            "fieldKey": "tipoIdentificacion",
+            "required": false
+        }]
+}

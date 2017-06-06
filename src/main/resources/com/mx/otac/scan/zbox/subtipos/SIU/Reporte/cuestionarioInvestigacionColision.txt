@@ -1,0 +1,18 @@
+{
+    "tipoDocumental": "Reporte",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "cuestionarioInvestigacionColision",
+    "ruta": "@numeroSiniestro/SIU/@tipoSiniestro/Documentos",
+    "checklistrelacionado": "CHKLST_SIU_COLS_001",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoReporte",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaReporte",
+            "required": false
+        }]
+}

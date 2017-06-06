@@ -1,0 +1,18 @@
+{
+    "tipoDocumental": "Reporte",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "cuestionarioInvestigacionRCFamiliar",
+    "ruta": "@numeroSiniestro/SIU/@tipoSiniestro/Documentos",
+    "checklistrelacionado": "CHKLST_SIU_RCFM_006",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoReporte",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaReporte",
+            "required": false
+        }]
+}

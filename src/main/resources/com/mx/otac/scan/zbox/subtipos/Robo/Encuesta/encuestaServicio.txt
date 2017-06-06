@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Encuesta",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "encuestaServicio",
+    "ruta": "@numeroSiniestro/Expediente Robo/Documentos",
+    "checklistrelacionado": "CHKLST_RB_001 CHKLST_PORT_VENDROB_006",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioEncuesta",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoEncuesta",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaEncuesta",
+            "required": false
+        }]
+}

@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Encuesta",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "encuestaServicio",
+    "ruta": "@numeroSiniestro/Tramite/@incidente/@tipoTramitePago/@idUnicoTramite/@costCategory/Documentos",
+    "checklistrelacionado": "CHKLST_PAG_PROV_038 CHKLST_PROV_LIQ_039 CHKLST_REM_VIAVIA_041 CHKLST_PAG_NDED_042 CHKLST_REM_GAS_043",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioEncuesta",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoEncuesta",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaEncuesta",
+            "required": false
+        }]
+}

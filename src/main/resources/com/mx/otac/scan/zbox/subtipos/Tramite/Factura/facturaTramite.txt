@@ -1,0 +1,53 @@
+{
+    "tipoDocumental": "Factura",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "facturaTramite",
+    "ruta": "@numeroSiniestro/Tramite/@incidente/@tipoTramitePago/@idUnicoTramite/@costCategory/Documentos",
+    "checklistrelacionado": "CHKLST_REM_GRU_003 CHKLST_REM_AUS_022 CHKLST_REM_AUSP_023 CHKLST_REM_EXTLL_027 CHKLST_REM_MULCO_030 CHKLST_REM_OBJP_031 CHKLST_RC_GM_033 CHKLST_RC_PB_034 CHKLST_RC_FAM_035 CHKLST_PAG_PROV_038 CHKLST_PROV_LIQ_039 CHKLST_DA_TER_040 CHKLST_REM_VIAVIA_041 CHKLST_PAG_NDED_042 CHKLST_REM_GAS_043 CHKLST_PROV_CRIST_044 CHKLST_TPA_ADM_045 CHKLST_GAST_MEDI_046 CHKLST_REM_TRA_047 CHKLST_REM_PAGGM_050",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "folio",
+            "fieldKey": "folioFactura",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoFactura",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaFactura",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "monto",
+            "fieldKey": "monto",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "rfcEmisor",
+            "fieldKey": "RFCEmisor",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "razonSocialEmisor",
+            "fieldKey": "razonSocialEmisor",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "rfcReceptor",
+            "fieldKey": "RFCReceptor",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "razonSocialReceptor",
+            "fieldKey": "razonSocialReceptor",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "unidadFacturacion",
+            "fieldKey": "unidadFacturacion",
+            "required": false
+        }]
+}

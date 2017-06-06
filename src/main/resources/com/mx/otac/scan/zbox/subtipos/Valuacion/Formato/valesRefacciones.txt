@@ -1,0 +1,33 @@
+{
+    "tipoDocumental": "Formato",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "valesRefacciones",
+    "ruta": "@numeroSiniestro/@area/@folioAsignacion/@tipoIndemnizacion/Documentos",
+    "checklistrelacionado": "CHKLST_VAL_REP_001 CHKLST_PAG_PROV_038 CHKLST_PROV_CRIST_044",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "folio", 
+            "fieldKey": "folioFormato",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoFormato",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaFormato",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "destino",
+            "fieldKey": "destino",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "origen",
+            "fieldKey": "origen",
+            "required": false
+        }]
+}

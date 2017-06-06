@@ -1,0 +1,8 @@
+ {
+    "checkList": "CHKLST_LEG_UNE_003",
+    "elementos": [{
+            "subTipoDocumental": "contestacionReclamacionUNE",
+            "area": "Legal",
+            "obligatorio": false                     
+        }]
+}

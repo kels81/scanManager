@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Reporte",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "inventarioVehiculoDanado",
+    "ruta": "@numeroSiniestro/Expediente Robo/Documentos",
+    "checklistrelacionado": "CHKLST_RB_001 CHKLST_RBPP_002 CHKLST_RBPP_003 CHKLST_SLV_ROB_001 CHKLST_PORT_VENDROB_006",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioReporte",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoReporte",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaReporte",
+            "required": false
+        }]
+}

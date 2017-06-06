@@ -1,0 +1,28 @@
+{
+    "tipoDocumental": "Acta",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "contestacionReclamacionUNE",
+    "ruta": "@numeroSiniestro/Expediente Legal/UNE/Documentos",
+    "checklistrelacionado": "CHKLST_LEG_UNE_003",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "folio",
+            "fieldKey": "folioActa",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoActa",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "asunto",
+            "fieldKey": "asunto",
+            "required": false
+        },{
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaExpedicion",
+            "required": false
+        }]
+}

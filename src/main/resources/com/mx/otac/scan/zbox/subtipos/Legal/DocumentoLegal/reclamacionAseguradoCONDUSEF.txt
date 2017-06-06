@@ -1,0 +1,33 @@
+ {
+    "tipoDocumental": "Documento Legal",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "reclamacionAseguradoCONDUSEF",
+    "ruta": "@numeroSiniestro/Expediente Legal/CONDUSEF/Documentos",
+    "checklistrelacionado": "CHKLST_LEG_COND_001",
+    "fields": [{
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaExpedicion",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoDocumentoLegal",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioCaso",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "asunto",
+            "fieldKey": "asunto",
+            "required": false
+        },  {
+            "type": "string",
+            "keyZbox": "ejecutante",
+            "fieldKey": "ejecutante",
+            "required": false
+        }]
+}

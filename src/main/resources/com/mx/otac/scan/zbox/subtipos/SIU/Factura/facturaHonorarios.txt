@@ -1,0 +1,53 @@
+{
+    "tipoDocumental": "Factura",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "facturaHonorarios",
+    "ruta": "@numeroSiniestro/SIU/@tipoSiniestro/Documentos",
+    "checklistrelacionado": "CHKLST_SIU_COLS_001 CHKLST_SIU_NOCOLS_002 CHKLST_SIU_ROBT_003 CHKLST_SIU_ROBP_004 CHKLST_SIU_CRIST_005 CHKLST_SIU_RCFM_006 CHKLST_SIU_EXTLLV_007",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "folio",
+            "fieldKey": "folioFactura",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoFactura",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaFactura",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "razonSocialEmisor",
+            "fieldKey": "razonSocialEmisor",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox":  "razonSocialReceptor",
+            "fieldKey": "razonSocialReceptor",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "monto",
+            "fieldKey": "monto",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "rfcReceptor",
+            "fieldKey": "RFCReceptor",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "rfcEmisor",
+            "fieldKey": "RFCEmisor",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox":  "unidadFacturacion",
+            "fieldKey": "unidadFacturacion",
+            "required": false
+        }]
+}

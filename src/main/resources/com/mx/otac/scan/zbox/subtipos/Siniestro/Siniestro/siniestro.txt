@@ -1,0 +1,53 @@
+{
+     "tipoDocumental": "Siniestro",
+    "templateKey": "mxcSiniestro",
+    "subTipoDocumental": "siniestro",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "numerosiniestro",
+            "fieldKey": "numeroSiniestro",
+            "required": true
+        }, {
+            "type": "string",
+	    "keyZbox": "numeropoliza",
+            "fieldKey": "numeroPoliza",
+            "required": false
+        }, {
+            "type": "string",
+	    "keyZbox": "nombreasegurado",
+            "fieldKey": "nombreAsegurado",
+            "required": false
+        }, {
+            "type": "date",
+	    "keyZbox": "fechacreaciondocumento",
+            "fieldKey": "fechaCreacionDocumento",
+            "required": false
+        }, {
+            "type": "string",
+	    "keyZbox": "usuarioregistro",
+            "fieldKey": "idUsuarioCmp",
+            "required": false
+        },{
+            "type": "string",
+            "fieldKey": "subtipo",
+            "required": false
+        },{
+            "type": "string",
+            "fieldKey": "checklistrelacionado",
+            "required": false
+        }, {
+            "type": "string",
+            "fieldKey": "area",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "idservicio",
+            "fieldKey": "idServicio",
+            "required": false
+        }, {
+            "type": "string",            
+            "fieldKey": "operacion",
+            "required": false
+        }]
+
+}

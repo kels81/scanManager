@@ -1,0 +1,18 @@
+{
+    "tipoDocumental": "Poliza",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "copiaPoliza",
+    "ruta": "@numeroSiniestro/Expediente Técnico Daños Materiales/Cristaleras/Documentos",
+    "checklistrelacionado": "CHKLST_CRIST_001",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioPoliza",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "nombreBeneficiario",
+            "fieldKey": "nombreBeneficiario",
+            "required": false
+        }]
+}

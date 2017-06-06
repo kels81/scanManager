@@ -1,0 +1,18 @@
+{
+    "tipoDocumental": "Comprobante",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "comprobanteBancario",
+    "ruta": "Proveedores/@tipoProveedor/@idProveedor/@tipoOficina",
+    "checklistrelacionado": "CHKLST_VNDMG_PCRPF CHKLST_VNDMG_PCRPM CHKLST_VNDMG_PNRPF CHKLST_VNDMG_PNRPM",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoComprobante",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaComprobante",
+            "required": false
+        }]
+}

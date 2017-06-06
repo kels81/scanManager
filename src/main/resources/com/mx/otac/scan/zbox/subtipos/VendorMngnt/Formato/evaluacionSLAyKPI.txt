@@ -1,0 +1,18 @@
+{
+    "tipoDocumental": "Formato",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "evaluacionSLAyKPI",
+    "ruta": "Proveedores/@tipoProveedor/@idProveedor/@tipoOficina",
+    "checklistrelacionado": "CHKLST_VNDMG_PTPA",
+    "fields": [[{
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoFormato",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaFormato",
+            "required": false
+        }]
+}

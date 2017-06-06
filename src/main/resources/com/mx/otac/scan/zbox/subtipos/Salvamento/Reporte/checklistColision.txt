@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Reporte",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "checklistColision",
+    "ruta": "@numeroSiniestro/@area/Documentos",
+    "checklistrelacionado": "CHKLST_SLV_COL_002",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoReporte",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaReporte",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioReporte",
+            "required": false
+        }]
+}

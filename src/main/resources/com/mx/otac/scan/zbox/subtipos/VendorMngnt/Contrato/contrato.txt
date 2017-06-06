@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Contrato",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "contrato",
+    "ruta": "Proveedores/@tipoProveedor/@idProveedor/@tipoOficina",
+    "checklistrelacionado": "CHKLST_VNDMG_PCRPF CHKLST_VNDMG_PCRPM CHKLST_VNDMG_PTPA",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoContrato",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "asunto",
+            "fieldKey": "asunto",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaContrato",
+            "required": false
+        }]
+}

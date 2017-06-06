@@ -1,0 +1,33 @@
+{
+    "tipoDocumental": "Acta",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "averiguacionPreviaCertificada",
+    "ruta": "@numeroSiniestro/Tramite/@incidente/@tipoTramitePago/@idUnicoTramite/@costCategory/Documentos",
+    "checklistrelacionado": "CHKLST_IND_ROB_007 CHKLST_REM_OBJP_031",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "folio",
+            "fieldKey": "folioActa",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoActa",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaActa",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "motivo",
+            "fieldKey": "motivoAveriguacion",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "nombreBeneficiario",
+            "fieldKey": "beneficiario",
+            "required": false
+        }]
+}

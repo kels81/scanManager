@@ -1,0 +1,53 @@
+{
+    "tipoDocumental": "Factura",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "facturaOrigenVehiculo",
+    "ruta": "@numeroSiniestro/Recuperaciones/Documentos",
+    "checklistrelacionado": "CHKLST_RCPR_001 CHKLST_SLV_ROB_001 CHKLST_SLV_COL_002",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "folio",
+            "fieldKey": "folioFactura",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoFactura",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaFactura",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "razonSocialEmisor",
+            "fieldKey": "razonSocialEmisor",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox":  "razonSocialReceptor",
+            "fieldKey": "razonSocialReceptor",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "monto",
+            "fieldKey": "monto",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "rfcReceptor",
+            "fieldKey": "RFCReceptor",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "rfcEmisor",
+            "fieldKey": "RFCEmisor",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "unidadFacturacion",
+            "fieldKey": "unidadFacturacion",
+            "required": false
+        }]
+}

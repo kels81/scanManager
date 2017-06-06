@@ -1,0 +1,425 @@
+{
+    "template": [{
+            "templateKey": "mxcGlobal",
+            "fields": [
+                {
+                    "type": "enum",
+                    "key": "subtipoDocumentalV2",
+                    "displayName": "Subtipo",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "asunto",
+                    "displayName": "Asunto",
+                    "hidden": false
+        },
+                {
+                    "type": "date",
+                    "key": "fechaDocumento",
+                    "displayName": "Fecha Documento",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "idUsuarioCM",
+                    "displayName": "Id Usuario CM",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "nombreComercial",
+                    "displayName": "Nombre Comercial",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "numeroReferencia",
+                    "displayName": "Número Referencia",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "razonSocial",
+                    "displayName": "Razón Social",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "rfc",
+                    "displayName": "RFC",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "subtipo",
+                    "displayName": "Subtipo Proveedor",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "tipo",
+                    "displayName": "Tipo",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "tipoIdentificacion",
+                    "displayName": "Tipo Identificación",
+                    "hidden": false
+        },
+                {
+                    "type": "date",
+                    "key": "fechaPago",
+                    "displayName": "Fecha Pago",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "folio",
+                    "displayName": "Folio",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "monto",
+                    "displayName": "Monto",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "nombreBeneficiario",
+                    "displayName": "Nombre Beneficiario",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "ordenante",
+                    "displayName": "Ordenante",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "razonSocialEmisor",
+                    "displayName": "Razón Social Emisor",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "razonSocialReceptor",
+                    "displayName": "Razón Social Receptor",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "rfcEmisor",
+                    "displayName": "RFC Emisor",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "rfcReceptor",
+                    "displayName": "RFC Receptor",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "resultadoValidacion",
+                    "displayName": "Resultado Validación",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "unidadFacturacion",
+                    "displayName": "Unidad Facturación",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "agenteBroker",
+                    "displayName": "Agente Broker",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "anio",
+                    "displayName": "Anio",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "banco",
+                    "displayName": "Banco",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "ciudadPagoComprobante",
+                    "displayName": "Ciudad Pago Comprobante",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "cobertura",
+                    "displayName": "Cobertura",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "destino",
+                    "displayName": "Destino",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "edad",
+                    "displayName": "Edad",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "ejecutante",
+                    "displayName": "Ejecutante",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "emisor",
+                    "displayName": "Emisor",
+                    "hidden": false
+        },
+                {
+                    "type": "date",
+                    "key": "fechaEmision",
+                    "displayName": "Fecha Emisión",
+                    "hidden": false
+        },
+                {
+                    "type": "date",
+                    "key": "fechaEnvio",
+                    "displayName": "Fecha Envío",
+                    "hidden": false
+        },
+                {
+                    "type": "date",
+                    "key": "fechaRecepcion",
+                    "displayName": "Fecha Recepción",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "institucion",
+                    "displayName": "Institución",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "latitud",
+                    "displayName": "Latitud",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "longitud",
+                    "displayName": "Longitud",
+                    "hidden": false
+        },
+                {
+                    "type": "enum",
+                    "key": "mes",
+                    "displayName": "Mes",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "motivo",
+                    "displayName": "Motivo",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "nombreLesionado",
+                    "displayName": "Nombre Lesionado",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "nombreMedico",
+                    "displayName": "Nombre Médico",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "nombrePaciente",
+                    "displayName": "Nombre Paciente",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "nombrePersona",
+                    "displayName": "Nombre Persona",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "origen",
+                    "displayName": "Origen",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "padecimiento",
+                    "displayName": "Padecimiento",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "precioSugerido",
+                    "displayName": "Precio Sugerido",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "referencia",
+                    "displayName": "Referencia",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "remitente",
+                    "displayName": "Remitente",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "rfcBeneficiario",
+                    "displayName": "RFC Beneficiario",
+                    "hidden": false
+        },
+                {
+                    "type": "enum",
+                    "key": "sexo",
+                    "displayName": "Sexo",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "tipoAtencion",
+                    "displayName": "Tipo Atención",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "tipoLesionado",
+                    "displayName": "Tipo Lesionado",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "tipoPersona",
+                    "displayName": "Tipo Persona",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "unidadMedica",
+                    "displayName": "Unidad Médica",
+                    "hidden": false
+        }
+        ]
+},
+        {
+            "templateKey": "mxcSiniestro",
+            "fields": [
+                {
+                    "type": "string",
+                    "key": "numerosiniestro",
+                    "displayName": "Número Siniestro",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "numeropoliza",
+                    "displayName": "Número Póliza",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "nombreasegurado",
+                    "displayName": "Nombre Asegurado",
+                    "hidden": false
+        },
+                {
+                    "type": "date",
+                    "key": "fechacreaciondocumento",
+                    "displayName": "Fecha Creación Documento",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "usuarioregistro",
+                    "displayName": "Usuario Registro",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "checklistrelacionado",
+                    "displayName": "CheckList Relacionado",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "subtipo",
+                    "displayName": "Subtipo",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "area",
+                    "displayName": "Área",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "idservicio",
+                    "displayName": "Id Servicio",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "operacion",
+                    "displayName": "Operación",
+                    "hidden": false
+        },
+                {
+                    "type": "string",
+                    "key": "idUnicoTramite",
+                    "displayName": "Id Único Trámite",
+                    "hidden": false
+        }
+        ]
+},
+        {
+            "templateKey": "mxcCartaCobertura",
+            "fields": [
+                {
+                    "type": "string",
+                    "key": "anombredequienseemite",
+                    "displayName": "Nombre De A Quién Se Emite",
+                    "hidden": false
+        },
+                {
+                    "type": "date",
+                    "key": "fechainiciovigencia",
+                    "displayName": "Fecha Inicio Vigencia",
+                    "hidden": false
+        },
+                {
+                    "type": "date",
+                    "key": "fechafinvigencia",
+                    "displayName": "Fecha Fin Vigencia",
+                    "hidden": false
+        }
+        ]
+}]
+}

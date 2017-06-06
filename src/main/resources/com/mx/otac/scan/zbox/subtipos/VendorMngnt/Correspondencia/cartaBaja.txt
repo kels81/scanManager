@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Correspondencia",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "cartaBaja",
+    "ruta": "Proveedores/@tipoProveedor/@idProveedor/@tipoOficina",
+    "checklistrelacionado": "",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoCorrespondencia",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaCorrespondencia",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaRecepcion",
+            "fieldKey": "fechaRecepcion",
+            "required": false
+        }]
+}

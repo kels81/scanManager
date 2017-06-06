@@ -1,0 +1,43 @@
+{
+    "tipoDocumental": "Orden de Pago",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "finiquito",
+    "ruta": "@numeroSiniestro/Expediente Técnico Daños Materiales/Cristaleras/Documentos",
+    "checklistrelacionado": "CHKLST_CRIST_001",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "nombreBeneficiario",
+            "fieldKey": "beneficiario",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "cobertura",
+            "fieldKey": "cobertura",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaPago", 
+            "fieldKey": "fechaPago",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "monto",
+            "fieldKey": "montoPago",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "numeroReferencia",
+            "fieldKey": "numeroReferencia",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "ordenante",
+            "fieldKey": "ordenante",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoOrden",
+            "required": false
+        }]
+}

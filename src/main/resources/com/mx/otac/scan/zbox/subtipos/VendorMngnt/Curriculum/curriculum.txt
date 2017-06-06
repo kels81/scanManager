@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Curriculum",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "curriculum",
+    "ruta": "Proveedores/@tipoProveedor/@idProveedor/@tipoOficina",
+    "checklistrelacionado": "CHKLST_VNDMG_PCRPF CHKLST_VNDMG_PCRPM CHKLST_VNDMG_PNRPF CHKLST_VNDMG_PNRPM CHKLST_VNDMG_PTPA",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoCurriculum",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaCurriculum",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "nombreComercial",
+            "fieldKey": "nombreComercial",
+            "required": false
+        }]
+}

@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Informe",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "expedienteRCFamiliar",
+    "ruta": "@numeroSiniestro/SIU/@tipoSiniestro/Documentos",
+    "checklistrelacionado": "CHKLST_SIU_RCFM_006",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioInforme",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoInforme",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaInforme",
+            "required": false
+        }]
+}

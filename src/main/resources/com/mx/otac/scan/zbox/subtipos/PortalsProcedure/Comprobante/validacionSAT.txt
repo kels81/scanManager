@@ -1,0 +1,43 @@
+{
+    "tipoDocumental": "Comprobante",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "validacionSAT",
+    "ruta": "@numeroSiniestro/Tramite/Incidente/TipoTramitePago/IdUnico/CostCategory/Documentos",
+    "checklistrelacionado": "CHKLST_PAG_PROV_038 CHKLST_PROV_LIQ_039 CHKLST_DA_TER_040 CHKLST_REM_VIAVIA_041 CHKLST_PAG_NDED_042 CHKLST_REM_GAS_043",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioComprobante",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo", 
+            "fieldKey": "tipoComprobante",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaComprobante",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "resultadoValidacion", 
+            "fieldKey": "resultadoValidacion",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "rfcBeneficiario",
+            "fieldKey": "RFCbeneficiario",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "nombreBeneficiario",
+            "fieldKey": "beneficiario",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "monto",
+            "fieldKey": "monto",
+            "required": false
+        }]
+}

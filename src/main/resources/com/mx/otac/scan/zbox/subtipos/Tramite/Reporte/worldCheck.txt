@@ -1,0 +1,33 @@
+{
+    "tipoDocumental": "Reporte",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "worldCheck",
+    "ruta": "@numeroSiniestro/Tramite/@incidente/@tipoTramitePago/@idUnicoTramite/@costCategory/Documentos",
+    "checklistrelacionado": "CHKLST_DA_TERV_008 CHKLST_DA_TERBM_009 CHKLST_INC_PP_010 CHKLST_INC_PT_011 CHKLST_REM_GML_012 CHKLST_FIN_INDM_013 CHKLST_RC_PD_032 CHKLST_RC_GM_033 CHKLST_RC_PB_034 CHKLST_RC_FAM_035",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioReporte",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoReporte",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaReporte",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaAviso",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "nombrePersona",
+            "fieldKey": "nombreTercero",
+            "required": false
+        }]
+}

@@ -1,0 +1,40 @@
+{
+    "checkList": "CHKLST_GAST_MEDI_046",
+    "elementos": [{
+            "subTipoDocumental": "anexoTramite",
+            "area": "Tramite",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "comprobanteTransferenciaElectronica",
+            "area": "Tramite",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "estadoCuentaBancario",
+            "area": "Tramite",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "facturaTramite",
+            "area": "Tramite",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "articulo492",
+            "area": "Tramite",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "copiaCredencialZurich",
+            "area": "Tramite",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "soportePago",
+            "area": "Tramite",
+            "obligatorio": false
+        }, { 
+            "subTipoDocumental": "paseServicioMedico",
+            "area": "GastosMedicos",
+            "obligatorio": true                
+        }, { 
+            "subTipoDocumental": "informeMedico",
+            "area": "GastosMedicos",
+            "obligatorio": true                
+        }]
+}

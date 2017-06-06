@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Informe",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "informacionAtencionCONDUSEF",
+    "ruta": "@numeroSiniestro/Expediente Legal/CONDUSEF/Documentos",
+    "checklistrelacionado": "CHKLST_LEG_COND_001",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioInforme",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaInforme",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoInforme",
+            "required": false
+        }]
+}

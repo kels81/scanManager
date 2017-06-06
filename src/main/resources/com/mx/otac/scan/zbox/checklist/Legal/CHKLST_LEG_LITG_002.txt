@@ -1,0 +1,36 @@
+{
+   "checkList": "CHKLST_LEG_LITG_002",
+    "elementos": [{
+            "subTipoDocumental": "demandaLitigios",
+            "area": "Legal",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "constanciasPagoLitigios",
+            "area": "Legal",
+            "obligatorio": false        
+        }, {
+            "subTipoDocumental": "documentacionAdicionalCasoLitigios",
+            "area": "Legal",
+            "obligatorio": false        
+        }, {
+            "subTipoDocumental": "recursosLitigiosAmparo",
+            "area": "Legal",
+            "obligatorio": false          
+        }, {
+            "subTipoDocumental": "recursosLitigiosApelacion",
+            "area": "Legal",
+            "obligatorio": false          
+        }, {
+            "subTipoDocumental": "seguimientoCasoLitigios",
+            "area": "Legal",
+            "obligatorio": false          
+        }, {
+            "subTipoDocumental": "sentenciaLitigios1raInstancia",
+            "area": "Legal",
+            "obligatorio": false          
+        }, {
+            "subTipoDocumental": "facturaPagoAbogadoLitigios",
+            "area": "Legal",
+            "obligatorio": false          
+        }]
+}

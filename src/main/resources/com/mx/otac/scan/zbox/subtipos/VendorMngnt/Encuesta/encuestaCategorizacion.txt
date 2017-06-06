@@ -1,0 +1,18 @@
+{
+    "tipoDocumental": "Encuesta",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "encuestaCategorizacion",
+    "ruta": "Proveedores/@tipoProveedor/@idProveedor/@tipoOficina",
+    "checklistrelacionado": "CHKLST_VNDMG_PCRPF CHKLST_VNDMG_PCRPM",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoEncuesta",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaEncuesta",
+            "required": false
+        }]
+}

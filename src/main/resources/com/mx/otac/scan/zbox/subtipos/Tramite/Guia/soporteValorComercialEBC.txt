@@ -1,0 +1,38 @@
+{
+    "tipoDocumental": "Guia",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "soporteValorComercialEBC",
+    "ruta": "@numeroSiniestro/Tramite/@incidente/@tipoTramitePago/@idUnicoTramite/@costCategory/Documentos",
+    "checklistrelacionado": "CHKLST_PAG_PT_006 CHKLST_IND_ROB_007",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoGuia",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaGuia",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "anio",
+            "fieldKey": "anio",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "mes",
+            "fieldKey": "mes",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "cobertura",
+            "fieldKey": "cobertura",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "nombreBeneficiario",
+            "fieldKey": "beneficiario",
+            "required": false
+        }]
+}

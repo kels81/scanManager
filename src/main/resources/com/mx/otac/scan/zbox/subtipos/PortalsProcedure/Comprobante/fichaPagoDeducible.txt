@@ -1,0 +1,38 @@
+{
+    "tipoDocumental": "Comprobante",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "fichaPagoDeducible",
+    "ruta": "@numeroSiniestro/Tramite/Incidente/TipoTramitePago/IdUnico/CostCategory/Documentos",
+    "checklistrelacionado": "CHKLST_PAG_PROV_038",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoComprobante",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "numeroSiniestro",
+            "fieldKey": "siniestro",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "numeroPoliza",
+            "fieldKey": "poliza",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "nombreBeneficiario",
+            "fieldKey": "beneficiario",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "cobertura",
+            "fieldKey": "cobertura",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "monto",
+            "fieldKey": "monto",
+            "required": false
+        }]
+}

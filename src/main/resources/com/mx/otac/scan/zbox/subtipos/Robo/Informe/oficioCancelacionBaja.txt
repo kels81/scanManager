@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Informe",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "oficioCancelacionBaja",
+    "ruta": "@numeroSiniestro/Expediente Robo/Documentos",
+    "checklistrelacionado": "CHKLST_RB_001 CHKLST_RBPP_002 CHKLST_RBPP_003 CHKLST_SLV_ROB_001 CHKLST_PORT_VENDROB_006",
+    "fields": [{
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaInforme",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioInforme",
+            "required": false
+        },  {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoInforme",
+            "required": false
+        }]
+}

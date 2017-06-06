@@ -1,0 +1,53 @@
+{
+    "tipoDocumental": "Orden de Pago",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "pagoIndemnizacionMuerteInvalidezFisica",
+    "ruta": "@numeroSiniestro/@area/@operacion/@nombreLesionado/Documentos",
+    "checklistrelacionado": "CHKLST_GASMED_001",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "nombreBeneficiario",
+            "fieldKey": "beneficiario",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "cobertura",
+            "fieldKey": "cobertura",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaPago",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "monto",
+            "fieldKey": "montoPago",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipoLesionado",
+            "fieldKey": "tipoLesionado",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "nombreLesionado", 
+            "fieldKey": "nombreLesionado",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "numeroReferencia",
+            "fieldKey": "numeroReferencia",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "ordenante",
+            "fieldKey": "ordenante",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoOrden",
+            "required": false
+        }]
+}

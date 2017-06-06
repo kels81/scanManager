@@ -1,0 +1,38 @@
+{
+    "tipoDocumental": "Formato",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "paseServicioMedico",
+    "ruta": "@numeroSiniestro/@area/@operacion/@nombreLesionado/Documentos",
+    "checklistrelacionado": "CHKLST_GASMED_001 CHKLST_GAST_MEDI_046 CHKLST_REM_PAGD_049 CHKLST_REM_PAGGM_050",
+    "fields": [{
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaFormato",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioFormato",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoFormato",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipoLesionado",
+            "fieldKey": "tipoLesionado",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "nombreLesionado",
+            "fieldKey": "nombreLesionado",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "nombreBeneficiario",
+            "fieldKey": "beneficiario",
+            "required": false
+        }]
+}

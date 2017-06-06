@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Encuesta",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "encuestaServicio",
+    "ruta": "@numeroSiniestro/Expediente Legal/Asistencia Legal/Documentos",
+    "checklistrelacionado": "CHKLST_LEG_ALEG_004 CHKLST_PORT_VENDALEG_007",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioEncuesta",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoEncuesta",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaEncuesta",
+            "required": false
+        }]
+}

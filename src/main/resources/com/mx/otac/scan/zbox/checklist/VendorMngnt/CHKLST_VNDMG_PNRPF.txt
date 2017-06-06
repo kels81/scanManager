@@ -1,0 +1,72 @@
+{
+    "checkList": "CHKLST_VNDMG_PNRPF",
+    "elementos": [{
+            "subTipoDocumental": "comprobanteBancario",
+            "area": "Vendor Mngnt",
+            "obligatorio": true            
+        }, {
+            "subTipoDocumental": "comprobanteDomicilio",
+            "area": "Vendor Mngnt",
+            "obligatorio": true            
+        }, {
+            "subTipoDocumental": "RFC",
+            "area": "Vendor Mngnt",
+            "obligatorio": true            
+        }, {
+            "subTipoDocumental": "respaldoFactura",
+            "area": "Vendor Mngnt",
+            "obligatorio": true            
+        }, {
+            "subTipoDocumental": "autorizacionTransferencia",
+            "area": "Vendor Mngnt",
+            "obligatorio": true            
+        }, {
+            "subTipoDocumental": "solicitudAlta",
+            "area": "Vendor Mngnt",
+            "obligatorio": true            
+        }, {
+            "subTipoDocumental": "curriculum",
+            "area": "Vendor Mngnt",
+            "obligatorio": true            
+        }, {
+            "subTipoDocumental": "factura",
+            "area": "Vendor Mngnt",
+            "obligatorio": true            
+        }, {
+            "subTipoDocumental": "formatoAlta",
+            "area": "Vendor Mngnt",
+            "obligatorio": true
+        }, {
+            "subTipoDocumental": "formatoModificacion",
+            "area": "Vendor Mngnt",
+            "obligatorio": true
+        }, {
+            "subTipoDocumental": "formatoBaja",
+            "area": "Vendor Mngnt",
+            "obligatorio": true                
+        }, {
+            "subTipoDocumental": "ife",
+            "area": "Vendor Mngnt",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "ine",
+            "area": "Vendor Mngnt",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "cedulaProfesional",
+            "area": "Vendor Mngnt",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "pasaporte",
+            "area": "Vendor Mngnt",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "licenciaConducir",
+            "area": "Vendor Mngnt",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "worldCheck",
+            "area": "Vendor Mngnt",
+            "obligatorio": true            
+        }]
+}

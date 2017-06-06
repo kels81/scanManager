@@ -1,0 +1,40 @@
+{
+    "checkList": "CHKLST_REM_DED_002",
+    "elementos": [{
+            "subTipoDocumental": "anexoTramite",
+            "area": "Tramite",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "articulo492",
+            "area": "Tramite",
+            "obligatorio": true           
+        }, {
+            "subTipoDocumental": "formatoExgratia",
+            "area": "Tramite",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "finiquitoSinFirma",
+            "area": "Tramite",
+            "obligatorio": true            
+        }, {
+            "subTipoDocumental": "finiquitoFirmado",
+            "area": "Tramite",
+            "obligatorio": true            
+        }, {
+            "subTipoDocumental": "liquidacionDanos",
+            "area": "Tramite",
+            "obligatorio": true            
+        }, {
+            "subTipoDocumental": "pagoUnico",
+            "area": "Tramite",
+            "obligatorio": false
+        }, { 
+            "subTipoDocumental": "sentencia",
+            "area": "Tramite",
+            "obligatorio": false                
+        }, { 
+            "subTipoDocumental": "acuerdoCondusef",
+            "area": "Tramite",
+            "obligatorio": true                            
+        }]
+}

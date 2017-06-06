@@ -1,0 +1,38 @@
+{
+    "tipoDocumental": "Estudio",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "notaEvolucion",
+    "ruta": "@numeroSiniestro/@area/@operacion/@nombreLesionado/Documentos",
+    "checklistrelacionado": "CHKLST_GASMED_001",
+    "fields": [{
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaNota",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "folio", 
+            "fieldKey": "folioNota",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipoLesionado",
+            "fieldKey": "tipoLesionado",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "nombreLesionado",
+            "fieldKey": "nombreLesionado",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "unidadMedica",
+            "fieldKey": "unidadMedica",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoEstudio",
+            "required": false
+        }]
+}

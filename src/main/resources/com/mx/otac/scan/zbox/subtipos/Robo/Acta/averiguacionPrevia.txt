@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Acta",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "averiguacionPrevia",
+    "ruta": "@numeroSiniestro/Expediente Robo/Documentos",
+    "checklistrelacionado": "CHKLST_RB_001 CHKLST_RBPP_002 CHKLST_RBPP_003 CHKLST_SLV_ROB_001",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "folio",
+            "fieldKey": "folioActa",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoActa",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaExpedicion",
+            "required": false
+        }]
+}

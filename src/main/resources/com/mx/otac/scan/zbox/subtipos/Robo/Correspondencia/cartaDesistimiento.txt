@@ -1,0 +1,33 @@
+{
+    "tipoDocumental": "Correspondencia",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "cartaDesistimiento",
+    "ruta": "@numeroSiniestro/Expediente Robo/Documentos",
+    "checklistrelacionado": "CHKLST_RB_001 CHKLST_PORT_VENDROB_006",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "referencia",
+            "fieldKey": "referencia",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "destino",
+            "fieldKey": "destinatario",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoCorrespondencia",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaCorrespondencia",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "remitente",
+            "fieldKey": "remitente",
+            "required": false
+        }]
+}

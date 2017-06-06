@@ -1,0 +1,33 @@
+{
+    "tipoDocumental": "Comprobante",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "comprobacionDeposito",
+    "ruta": "@numeroSiniestro/Tramite/@incidente/@tipoTramitePago/@idUnicoTramite/@costCategory/Documentos",
+    "checklistrelacionado": "CHKLST_REM_PIEDUP_048",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioComprobante",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoComprobante",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaComprobante",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "banco",
+            "fieldKey": "banco",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "cobertura",
+            "fieldKey": "cobertura",
+            "required": false
+        }]
+}

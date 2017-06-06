@@ -1,0 +1,43 @@
+{
+    "tipoDocumental": "Formato",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "formatoPagoDanos",
+    "ruta": "@numeroSiniestro/Tramite/@incidente/@tipoTramitePago/@idUnicoTramite/@costCategory/Documentos",
+    "checklistrelacionado": "CHKLST_REM_PAGD_049",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioFormato",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoFormato",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaFormato",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipoPersona",
+            "fieldKey": "tipoPersona",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoIdentificacion",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "rfc",
+            "fieldKey": "RFC",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "nombreBeneficiario",
+            "fieldKey": "beneficiario",
+            "required": false
+        }]
+}

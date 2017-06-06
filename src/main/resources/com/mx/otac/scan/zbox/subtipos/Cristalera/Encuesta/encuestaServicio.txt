@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Encuesta",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "encuestaServicio",
+    "ruta": "@numeroSiniestro/Expediente Técnico Daños Materiales/Cristaleras/Documentos",
+    "checklistrelacionado": "CHKLST_CRIST_001",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioEncuesta",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoEncuesta",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaEncuesta",
+            "required": false
+        }]
+}

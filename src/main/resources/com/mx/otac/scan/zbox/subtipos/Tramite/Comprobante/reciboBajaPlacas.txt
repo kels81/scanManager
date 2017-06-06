@@ -1,0 +1,28 @@
+{
+    "tipoDocumental": "Comprobante",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "reciboBajaPlacas",
+    "ruta": "@numeroSiniestro/Tramite/@incidente/@tipoTramitePago/@idUnicoTramite/@costCategory/Documentos",
+    "checklistrelacionado": "CHKLST_PAG_PT_006 CHKLST_IND_ROB_007",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoComprobante",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaComprobante",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "monto",
+            "fieldKey": "monto",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "ciudadPagoComprobante",
+            "fieldKey": "ciudadPagoComprobante",
+            "required": false
+        }]
+}

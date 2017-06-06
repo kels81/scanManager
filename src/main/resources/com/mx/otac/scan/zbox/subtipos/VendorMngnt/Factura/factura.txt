@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Factura",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "factura",
+    "ruta": "Proveedores/@tipoProveedor/@idProveedor/@tipoOficina",
+    "checklistrelacionado": "CHKLST_VNDMG_PNRPF CHKLST_VNDMG_PNRPM",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "folio",
+            "fieldKey": "folioFactura",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoFactura",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaFactura",
+            "required": false
+        }]
+}

@@ -1,0 +1,23 @@
+{
+   "tipoDocumental": "Comprobante",
+   "templateKey": "mxcGlobal",
+   "subTipoDocumental": "comprobanteDomicilio",
+   "ruta": "@numeroSiniestro/Expediente Técnico Daños Materiales/Ajuste/Documentos/@operacion",
+   "checklistrelacionado": "CHKLST_AJT_ASG_001 CHKLST_AJT_TRC_001",
+   "fields": [{
+	   "type": "string",
+	   "keyZbox": "folio",
+	   "fieldKey": "folioComprobante",
+	   "required": false
+	}, {
+	   "type": "string",
+	   "keyZbox": "tipo",
+	   "fieldKey": "tipoComprobante",
+	   "required": false
+	}, {
+	   "type": "date",
+	   "keyZbox": "fechaDocumento",
+	   "fieldKey": "fechaComprobante",
+	   "required": false
+	}]
+}

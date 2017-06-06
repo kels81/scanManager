@@ -1,0 +1,33 @@
+{
+    "tipoDocumental": "Estudio",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "estudio",
+    "ruta": "@numeroSiniestro/Tramite/@incidente/@tipoTramitePago/@idUnicoTramite/@costCategory/Documentos",
+    "checklistrelacionado": "CHKLST_REM_GML_012 CHKLST_REM_GM_014 CHKLST_RC_GM_033",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoEstudio",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaEstudio",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "institucion",
+            "fieldKey": "institucion",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "nombreBeneficiario",
+            "fieldKey": "beneficiario",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "cobertura",
+            "fieldKey": "cobertura",
+            "required": false
+        }]
+}

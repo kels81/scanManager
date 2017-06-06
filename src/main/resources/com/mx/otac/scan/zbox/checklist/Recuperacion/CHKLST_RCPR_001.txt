@@ -1,0 +1,48 @@
+{
+    "checkList": "CHKLST_RCPR_001",
+    "elementos": [ {
+            "subTipoDocumental": "cartaReclamacion",
+            "area": "Recuperaciones",
+            "obligatorio": true            
+        }, {
+            "subTipoDocumental": "facturaDeGrua",
+            "area": "Recuperaciones",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "facturaOrigenVehiculo",
+            "area": "Recuperaciones",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "facturaProveedor",
+            "area": "Recuperaciones",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "facturaDeducible",
+            "area": "Recuperaciones",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "facturaEfectivo",
+            "area": "Recuperaciones",
+            "obligatorio": true            
+        }, {
+            "subTipoDocumental": "facturaSIPAC",
+            "area": "Recuperaciones",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "facturaTradicional",
+            "area": "Recuperaciones",
+            "obligatorio": false            
+        },  {
+            "subTipoDocumental": "ordenRecibidaTercero",
+            "area": "Recuperaciones",
+            "obligatorio": false            
+        }, {
+            "subTipoDocumental": "guiaEBC",
+            "area": "Recuperaciones",
+            "obligatorio": false  
+        }, {
+            "subTipoDocumental": "interpretacionEstudio",
+            "area": "Tramite",
+            "obligatorio": false               
+        }]
+}

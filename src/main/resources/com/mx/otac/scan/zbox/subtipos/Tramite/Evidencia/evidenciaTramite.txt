@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Evidencia",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "evidenciaTramite",
+    "ruta": "@numeroSiniestro/Tramite/@incidente/@tipoTramitePago/@idUnicoTramite/@costCategory/Evidencias",
+    "checklistrelacionado": "CHKLST_REM_TRA_047",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioEvidencia",
+            "required": false
+        }, {
+            "type": "string",
+	    "keyZbox": "tipo",
+            "fieldKey": "tipoEvidencia",
+            "required": false
+        }, {
+            "type": "date",
+	    "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaEvidencia",
+            "required": false
+        }]
+}

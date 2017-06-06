@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Evidencia",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "evidenciasRecuperacion",
+    "ruta": "@numeroSiniestro/Expediente Robo/Evidencias",
+    "checklistrelacionado": "CHKLST_RB_001 CHKLST_PORT_VENDROB_006",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "tipo",
+            "fieldKey": "tipoEvidencia",
+            "required": false
+        }, {
+            "type": "date",
+	    "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaEvidencia",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioEvidencia",
+            "required": false
+        }]
+}

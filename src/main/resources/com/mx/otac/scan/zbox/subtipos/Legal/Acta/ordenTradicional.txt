@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Acta",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "ordenTradicional",
+    "ruta": "@numeroSiniestro/Expediente Legal/Asistencia Legal/Documentos",
+    "checklistrelacionado": "CHKLST_LEG_ALEG_004 CHKLST_PORT_VENDALEG_007",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "folio",
+            "fieldKey": "folioActa",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoActa",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaExpedicion",
+            "required": false
+        }]
+}

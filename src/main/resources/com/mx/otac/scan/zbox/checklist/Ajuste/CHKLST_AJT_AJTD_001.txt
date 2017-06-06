@@ -1,0 +1,8 @@
+{
+    "checkList": "CHKLST_AJT_AJTD_001",
+    "elementos": [{
+            "subTipoDocumental": "ordenPagoDanos",
+            "area": "Ajuste",
+            "obligatorio": false
+        }]
+}

@@ -1,0 +1,18 @@
+{
+    "tipoDocumental": "Evidencia",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "evidenciaValuacion",
+    "ruta": "@numeroSiniestro/@area/@folioAsignacion/@tipoIndemnizacion/Evidencias",
+    "checklistrelacionado": "CHKLST_VAL_PD_001 CHKLST_VAL_PT_001 CHKLST_VAL_REP_001",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "tipo",
+            "fieldKey": "tipoEvidencia",
+            "required": false
+        },{
+            "type": "date",
+	    "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaEvidencia",
+            "required": false
+        }]
+}

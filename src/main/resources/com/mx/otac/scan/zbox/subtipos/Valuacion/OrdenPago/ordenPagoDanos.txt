@@ -1,0 +1,43 @@
+{
+    "tipoDocumental": "Orden de Pago",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "ordenPagoDanos",
+    "ruta": "@numeroSiniestro/@area/@folioAsignacion/@tipoIndemnizacion/Documentos",
+    "checklistrelacionado": "CHKLST_VAL_PD_001 CHKLST_PAG_PD_001 CHKLST_IND_ROB_007 CHKLST_DA_TERV_008 CHKLST_DA_TERBM_009 CHKLST_ADCO_PD_018 CHKLST_EQE_PD_024 CHKLST_LLRIN_PD_029 CHKLST_RC_FAM_035 CHKLST_ROB_PAR_037",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "nombreBeneficiario",
+            "fieldKey": "beneficiario",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "cobetura",
+            "fieldKey": "cobertura",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaPago", 
+            "fieldKey": "fechaPago",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "monto",
+            "fieldKey": "montoPago",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "numeroReferencia",
+            "fieldKey": "numeroReferencia",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "ordenante",
+            "fieldKey": "ordenante",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoOrden",
+            "required": false
+        }]
+}

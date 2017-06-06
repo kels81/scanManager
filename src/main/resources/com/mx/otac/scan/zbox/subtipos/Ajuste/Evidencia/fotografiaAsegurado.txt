@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Evidencia",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "fotografiaAsegurado",
+    "ruta": "@numeroSiniestro/Expediente Técnico Daños Materiales/Ajuste/Evidencias/Asegurado",
+    "checklistrelacionado": "CHKLST_AJT_ASG_001",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "tipo",
+            "fieldKey": "tipoEvidencia",
+            "required": false
+        },{
+            "type": "date",
+	    "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaEvidencia",
+            "required": false
+        },{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioEvidencia",
+            "required": false
+        }]
+}

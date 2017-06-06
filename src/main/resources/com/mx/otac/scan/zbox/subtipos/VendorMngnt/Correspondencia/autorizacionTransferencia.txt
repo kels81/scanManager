@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Correspondencia",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "autorizacionTransferencia",
+    "ruta": "Proveedores/@tipoProveedor/@idProveedor/@tipoOficina",
+    "checklistrelacionado": "CHKLST_VNDMG_PCRPF CHKLST_VNDMG_PCRPM CHKLST_VNDMG_PNRPF CHKLST_VNDMG_PNRPM CHKLST_VNDMG_PTPA",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoCorrespondencia",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaCorrespondencia",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaRecepcion",
+            "fieldKey": "fechaRecepcion",
+            "required": false
+        }]
+}

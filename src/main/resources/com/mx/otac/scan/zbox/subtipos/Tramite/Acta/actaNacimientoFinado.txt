@@ -1,0 +1,33 @@
+{
+    "tipoDocumental": "Acta",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "actaNacimientoFinado",
+    "ruta": "@numeroSiniestro/Tramite/@incidente/@tipoTramitePago/@idUnicoTramite/@costCategory/Documentos",
+    "checklistrelacionado": "CHKLST_IND_MUE_017",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "folio",
+            "fieldKey": "folioActa",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoActa",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaActa",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "nombrePersona",
+            "fieldKey": "nombrePersona",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaNacimiento",
+            "required": false
+        }]
+}

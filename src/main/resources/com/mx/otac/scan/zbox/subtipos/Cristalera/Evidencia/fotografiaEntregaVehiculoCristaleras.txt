@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Evidencia",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "fotografiaEntregaVehiculoCristaleras",
+    "ruta": "@numeroSiniestro/Expediente Técnico Daños Materiales/Cristaleras/Evidencias",
+    "checklistrelacionado": "CHKLST_CRIST_001",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "tipo",
+            "fieldKey": "tipoEvidencia",
+            "required": false
+        },{
+            "type": "date",
+	    "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaEvidencia",
+            "required": false
+        },{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioEvidencia",
+            "required": false
+        }]
+}

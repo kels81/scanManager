@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Acta",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "declaracionUniversalAccidenteCristaleras",
+    "ruta": "@numeroSiniestro/Expediente Técnico Daños Materiales/Cristaleras/Documentos",
+    "checklistrelacionado": "CHKLST_CRIST_001",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "folio",
+            "fieldKey": "folioActa",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoEvento",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaExpedicion",
+            "required": false
+        }]
+}

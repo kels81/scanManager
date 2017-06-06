@@ -1,0 +1,43 @@
+{
+    "tipoDocumental": "Orden de Pago",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "finiquitoSinFirma",
+    "ruta": "@numeroSiniestro/Tramite/@incidente/@tipoTramitePago/@idUnicoTramite/@costCategory/Documentos",
+    "checklistrelacionado": "CHKLST_PAG_PD_001 CHKLST_REM_DED_002 CHKLST_REM_GRU_003 CHKLST_REM_PDIR_004 CHKLST_REM_RECT_005 CHKLST_PAG_PT_006 CHKLST_IND_ROB_007 CHKLST_DA_TERV_008 CHKLST_DA_TERBM_009 CHKLST_INC_PP_010 CHKLST_INC_PT_011 CHKLST_REM_GML_012 CHKLST_FIN_INDM_013 CHKLST_REM_GM_014 CHKLST_REM_GF_015 CHKLST_PER_ORG_016 CHKLST_IND_MUE_017 CHKLST_ADCO_PD_018 CHKLST_ADCO_PT_019 CHKLST_ADCO_INDR_020 CHKLST_REM_PGT_021 CHKLST_REM_AUS_022 CHKLST_REM_AUSP_023 CHKLST_EQE_PD_024 CHKLST_EQE_PT_025 CHKLST_EQE_INDR_026 CHKLST_REM_EXTLL_027 CHKLST_IND_GAP_028 CHKLST_LLRIN_PD_029 CHKLST_REM_MULCO_030 CHKLST_REM_OBJP_031 CHKLST_RC_PD_032 CHKLST_RC_GM_033 CHKLST_RC_PB_034 CHKLST_RC_FAM_035 CHKLST_RC_CONT_036 CHKLST_ROB_PAR_037 CHKLST_PAG_PROV_038 CHKLST_PROV_CRIST_044 CHKLST_REM_TRA_047 CHKLST_REM_PIEDUP_048 CHKLST_REM_PAGD_049 CHKLST_REM_PAGGM_050",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "nombreBeneficiario",
+            "fieldKey": "beneficiario",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "cobertura",
+            "fieldKey": "cobertura",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaPago",
+            "fieldKey": "fechaPago",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "monto",
+            "fieldKey": "montoPago",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "numeroReferencia",
+            "fieldKey": "numeroReferencia",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "ordenante",
+            "fieldKey": "ordenante",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoOrden",
+            "required": false
+        }]
+}

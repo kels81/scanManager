@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Encuesta",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "encuestaEvaluacion",
+    "ruta": "@numeroSiniestro/Expediente Técnico Daños Materiales/Ajuste/Documentos/Asegurado",
+    "checklistrelacionado": "CHKLST_AJT_ASG_001",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioEncuesta",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoEncuesta",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaEncuesta",
+            "required": false
+        }]
+}

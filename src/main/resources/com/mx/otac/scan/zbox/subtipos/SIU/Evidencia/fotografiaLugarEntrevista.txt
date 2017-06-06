@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Evidencia",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "fotografiaLugarEntrevista",
+    "ruta": "@numeroSiniestro/SIU/@tipoSiniestro/Evidencias",
+    "checklistrelacionado": "CHKLST_SIU_COLS_001 CHKLST_SIU_NOCOLS_002 CHKLST_SIU_ROBT_003 CHKLST_SIU_ROBP_004 CHKLST_SIU_CRIST_005 CHKLST_SIU_RCFM_006 CHKLST_SIU_EXTLLV_007",
+    "fields": [{
+            "type": "string",
+	    "keyZbox": "folio",
+            "fieldKey": "folioEvidencia",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoEvidencia",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaEvidencia",
+            "required": false
+        }]
+}

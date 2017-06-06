@@ -1,0 +1,33 @@
+{
+   "tipoDocumental": "Comprobante",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "pedimentoImportacion",
+    "ruta": "@numeroSiniestro/Tramite/@incidente/@tipoTramitePago/@idUnicoTramite/@costCategory/Documentos",
+    "checklistrelacionado": "CHKLST_PAG_PT_006 CHKLST_IND_ROB_007 CHKLST_DA_TERV_008 CHKLST_DA_TERBM_009",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioComprobante",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoComprobante",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaImportacion",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "rfc",
+            "fieldKey": "RFC",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "cobertura",
+            "fieldKey": "cobertura",
+            "required": false
+        }]
+}

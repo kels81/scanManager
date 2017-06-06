@@ -1,0 +1,23 @@
+{
+    "tipoDocumental": "Reporte",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "checklistRoboRecuperacion",
+    "ruta": "@numeroSiniestro/@area/Documentos",
+    "checklistrelacionado": "CHKLST_SLV_ROB_001",
+    "fields": [{
+            "type": "string",
+            "keyZbox": "tipo",
+            "fieldKey": "tipoReporte",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaReporte",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "folio",
+            "fieldKey": "folioReporte",
+            "required": false
+        }]
+}

@@ -1,0 +1,33 @@
+{
+    "tipoDocumental": "Reporte",
+    "templateKey": "mxcGlobal",
+    "subTipoDocumental": "detalleFacturacion",
+    "ruta": "@numeroSiniestro/Tramite/@incidente/@tipoTramitePago/@idUnicoTramite/@costCategory/Documentos",
+    "checklistrelacionado": "CHKLST_PAG_PT_006 CHKLST_IND_ROB_007",
+    "fields": [{
+            "type": "string",
+            "keyZbox":"folio",
+            "fieldKey": "folioReporte",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox":"tipo",
+            "fieldKey": "tipoReporte",
+            "required": false
+        }, {
+            "type": "date",
+            "keyZbox": "fechaDocumento",
+            "fieldKey": "fechaReporte",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "nombreBeneficiario",
+            "fieldKey": "beneficiario",
+            "required": false
+        }, {
+            "type": "string",
+            "keyZbox": "monto",
+            "fieldKey": "montoFacturacion",
+            "required": false
+        }]
+}
