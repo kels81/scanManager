@@ -44,17 +44,17 @@ public class WindowPDF extends FormLayout{
     private SubtipoDocumental subtipoDocumental;
     private File pdfFile = new File("C:\\prueba.pdf");
     
-    private Panel panel;
+    private final Panel panel;
     private TabSheet tabsheet;
-    private Window subWindow = new Window("PDF Viewer: ");
+    private final Window subWindow = new Window();
     
     private ComboBox cbxArea;
     private ComboBox cbxTipoDocumental;
     private ComboBox cbxSubtipoDocumental;
     
-    private TextField txfTemplateKey;
-    private TextField txfChecklistRelacionado;
-    private TextField txfRuta;
+    private final TextField txfTemplateKey;
+    private final TextField txfChecklistRelacionado;
+    private final TextField txfRuta;
     
     private VerticalLayout vltMeta = new VerticalLayout();
     private VerticalLayout vltMetadatos;
@@ -67,6 +67,7 @@ public class WindowPDF extends FormLayout{
         this.myUI = ui;
         pdfFile = file;
         
+        subWindow.setCaption(file.getName());
         subWindow.setDraggable(false);
         subWindow.setResizable(false);
         subWindow.setClosable(true);

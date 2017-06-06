@@ -311,11 +311,7 @@ public final class TransactionsView extends VerticalLayout implements View {
             w.focus();
         });
         menu.addItem("Metadatos", FontAwesome.CODE, (MenuBar.MenuItem selectedItem) -> {
-            Notification.show(file.getName());
             fileTrans.viewPDF(UI.getCurrent(), file);
-//            Window w = createWindow();
-//            UI.getCurrent().addWindow(w);
-//            w.focus();
         });
 
         return btnMenu;
