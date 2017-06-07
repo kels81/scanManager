@@ -18,6 +18,7 @@ import com.vaadin.ui.DateField;
 import com.vaadin.ui.Embedded;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TextField;
@@ -29,7 +30,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -62,8 +67,6 @@ public class WindowPDF extends FormLayout{
     private Button btnSaveJson;
     
     public WindowPDF (UI ui, File file) {
-        System.out.println("\npath -> " + rutaRaiz);
-        System.out.println("1path -> " + VaadinService.getCurrent().getBaseDirectory().getAbsolutePath());
         this.myUI = ui;
         pdfFile = file;
         
@@ -164,7 +167,9 @@ public class WindowPDF extends FormLayout{
         btnSaveJson.setIcon(FontAwesome.SAVE);
         btnSaveJson.setStyleName(ValoTheme.BUTTON_FRIENDLY);
         btnSaveJson.setClickShortcut(ShortcutAction.KeyCode.ENTER);
-        btnSaveJson.addClickListener(e -> {});
+        btnSaveJson.addClickListener(e -> {
+            this.subirMetadatos();
+        });
         
         vltMetadatos = new VerticalLayout(cbxArea, cbxTipoDocumental, cbxSubtipoDocumental, txfTemplateKey, txfChecklistRelacionado, txfRuta, vltMeta);
         vltMetadatos.setWidth("100%");
@@ -187,6 +192,86 @@ public class WindowPDF extends FormLayout{
         myUI.addWindow(subWindow);
     }
     
+    public void subirMetadatos(){
+        Map<String, String> metadatos = new HashMap<>();
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"); //FORMATO TIME-STAMP QUE RECIBE BOX PARA LA FECHA
+        String date = sdf.format(new Date());
+        
+        System.out.println(arrComponents.size());        
+        boolean faltanObligatorios = false;
+        for (Object obj : arrComponents) {
+            if( obj.getClass().equals(TextField.class) ){
+                if( (!((TextField)obj).getValue().equals("")) || !(((TextField)obj).getValue().isEmpty())){
+                    metadatos.put( ((TextField)obj).getCaption(), ((TextField)obj).getValue());
+                }else{
+                    if ( ((TextField)obj).isRequired()) {
+                        faltanObligatorios = true;
+                    }
+                }
+            } else if ( obj.getClass().equals(DateField.class) ) {
+                try{
+                    if(!((DateField)obj).isEmpty()){
+                        //date = ((DateField)obj).getValue().toString();
+                        metadatos.put( ((DateField)obj).getCaption(), ((DateField)obj).getValue().toString());
+                        
+                    }else{
+                        if ( ((DateField)obj).isRequired() ) {
+                            faltanObligatorios = true;
+                        }
+                    }
+                } catch (NullPointerException nullPointerException) {
+                    System.out.println("nullPointerException -> "+nullPointerException);
+                    //subtipoFormulario.addField(new FieldFormulario(((DateField)obj).getCaption(), ""));
+                }
+            }
+        }
+        if ( faltanObligatorios ) {
+            Notification.show("Datos Faltantes", "Completa los campos requeridos.", Notification.Type.WARNING_MESSAGE);
+            return;
+        }
+        
+        
+        
+        
+        System.out.println("INICIO");
+        //Path pathFile = Paths.get(Constantes.PDF_TEST);
+        
+
+        CargarDocumentoBox cargarDoc = new CargarDocumentoBox();
+
+        DocumentoVO documentoVO = new DocumentoVO();
+        documentoVO.setInputStream(pdfFile);
+        //documentoVO.setPath(pdfFile.getPath());
+        
+        System.out.println("path -> " + documentoVO.getPath());
+        
+        documentoVO.setNombreDocumento(pdfFile.getName());
+
+        //SINIESTRO
+        metadatos.put("numeroSiniestro", "66");
+        metadatos.put("area", cbxArea.getValue().toString());
+        metadatos.put("tipodocumental", cbxTipoDocumental.getValue().toString());
+        String strExtension = cbxSubtipoDocumental.getValue().toString();
+        metadatos.put("extension", strExtension.substring(strExtension.indexOf("."), strExtension.length()-1));
+        metadatos.put("operacion", "Tercero");
+
+        documentoVO.setMetadatos(metadatos);
+        String strSubtipo = cbxSubtipoDocumental.getValue().toString();
+        System.out.println("str -> "+strSubtipo);
+        strSubtipo = strSubtipo.substring(0, strSubtipo.indexOf("."));
+        System.out.println("str -> "+strSubtipo);
+        documentoVO.setSubTipoDocumental(strSubtipo);
+        
+        for (Map.Entry<String, String> entry : metadatos.entrySet()) {
+            System.out.format("Atributo : [ %s ], Valor : [ %s ] \n", entry.getKey(), entry.getValue());
+        }
+        
+        Boolean resultado = cargarDoc.verificarMetadatos(documentoVO);
+        
+        System.out.println("boolean -> "+resultado);
+    }
+    
     public VerticalLayout getComponentes() {
         arrComponents = new ArrayList<>();
         VerticalLayout frmlt = new VerticalLayout();
@@ -194,6 +279,7 @@ public class WindowPDF extends FormLayout{
         for (Field field : subtipoDocumental.getFields()) {
             if (field.getType().equals("date")) {
                 DateField tempDtFld = new DateField();
+                //tempDtFld.setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
                 tempDtFld.setSizeFull();
                 tempDtFld.setValidationVisible(true);
                 tempDtFld.setInvalidAllowed(false);

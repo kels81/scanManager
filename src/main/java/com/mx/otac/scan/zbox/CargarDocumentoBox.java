@@ -178,6 +178,7 @@ public class CargarDocumentoBox {
     }
 
     public Boolean reemplazarComodin(String ruta, DocumentoVO documentoVO) {
+        System.out.println("ruta -> "+ruta);
         Boolean resultado = Boolean.TRUE;
         String comodinStr = "";
         String separador = "@";
@@ -190,7 +191,6 @@ public class CargarDocumentoBox {
 
                     documentoVO.setPath(ruta);
                 }
-                System.out.println("ruta = " + ruta);
 
                 //} catch (NullPointerException exception) {
             } catch (Exception exception) {
@@ -289,7 +289,7 @@ public class CargarDocumentoBox {
              */
             ArrayList<String> tiposDocumentales = new ArrayList<>();
             tiposDocumentales.add(documentoVO.getSubTipoDocumental());
-            tiposDocumentales.add(Constantes.TIPO_SINIESTRO);  //SIEMPRE VA IR EN LOS METADATOS
+            //tiposDocumentales.add(Constantes.TIPO_SINIESTRO);  //SIEMPRE VA IR EN LOS METADATOS
 
             String strArea = documentoVO.getMetadato("area");
 
@@ -535,11 +535,13 @@ public class CargarDocumentoBox {
 
         String strArea = documentoVO.getMetadato("area");
         strArea = strArea.replaceAll("\\s", "");
+        String strTipo = documentoVO.getMetadato("tipodocumental");
+        String strExtension = documentoVO.getMetadato("extension");
 
         if (!subTipoDocumental.equals(Constantes.TIPO_SINIESTRO)) {
             String codigoTipoSiniestro = documentoVO.getMetadato("tipoSiniestro") == null ? "" : documentoVO.getMetadato("tipoSiniestro");
             documentoVO.setMetadato("tipoSiniestro", codigoTipoSiniestro);
-            strPath = "subtipos/" + strArea + "/" + subTipoDocumental + ".txt";
+            strPath = "subtipos/" + strArea + "/" + strTipo+ "/" + subTipoDocumental + strExtension;
             InputStream is = Constantes.class.getResourceAsStream(strPath);
             documentoVO.setPath(strPath);
             resp = true;
@@ -559,8 +561,10 @@ public class CargarDocumentoBox {
 
         String str = "", strContenidoJSON = "";
         StringBuilder buf = new StringBuilder();
-        InputStream is = Constantes.class.getResourceAsStream(documentoVO.getPath());
-
+        System.out.println("as "+WindowPDF.class.getResourceAsStream(documentoVO.getPath()));
+        System.out.println("no "+ WindowPDF.class.getResource(documentoVO.getPath()));
+        InputStream is = WindowPDF.class.getResourceAsStream(documentoVO.getPath());
+        System.out.println("leerContenidoJson -> " + documentoVO.getPath());
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             if (is != null) {
@@ -568,10 +572,12 @@ public class CargarDocumentoBox {
                     buf.append(str + "\n");
                 }
             }
+            System.out.println("buf -> "+buf.toString());
             documentoVO.setContenidoJson(buf.toString());
             return true;
         } catch (Exception e) {
             System.out.println("ex leerContenidoJson " + e);
+            e.printStackTrace();
         } finally {
             try {
                 is.close();
