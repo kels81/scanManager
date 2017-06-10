@@ -1,17 +1,15 @@
 {
     "tipoDocumental": "Anexos",
-    "templateKey": "mxcGlobal",
+    "templateKey": "anexo",
     "subTipoDocumental": "manualPoliticas",
     "ruta": "Proveedores/@tipoProveedor/@idProveedor/@tipoOficina",
     "checklistrelacionado": "CHKLST_VNDMG_PTPA",
     "fields": [{
             "type": "string",
-            "keyZbox": "tipo",
             "fieldKey": "tipoEvento",
             "required": false
         }, {
             "type": "date",
-            "keyZbox": "fechaDocumento",
             "fieldKey": "fechaAnexo",
             "required": false
         }]

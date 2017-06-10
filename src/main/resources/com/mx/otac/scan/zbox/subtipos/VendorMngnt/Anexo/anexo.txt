@@ -1,17 +1,15 @@
 {
     "tipoDocumental": "Anexos",
-    "templateKey": "mxcGlobal",
+    "templateKey": "anexo",
     "subTipoDocumental": "anexo",
     "ruta": "Proveedores/@tipoProveedor/@idProveedor/@tipoOficina",
     "checklistrelacionado": "CHKLST_VNDMG_PCRPF CHKLST_VNDMG_PCRPM",
     "fields": [{
             "type": "string",
-            "keyZbox": "tipo",
             "fieldKey": "tipoEvento",
             "required": false
         }, {
             "type": "date",
-            "keyZbox": "fechaDocumento",
             "fieldKey": "fechaAnexo",
             "required": false
         }]

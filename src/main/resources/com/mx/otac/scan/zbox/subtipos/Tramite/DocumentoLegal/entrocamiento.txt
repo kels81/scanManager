@@ -1,32 +1,27 @@
 {
     "tipoDocumental": "Documento Legal",
-    "templateKey": "mxcGlobal",
+    "templateKey": "documentoLegal",
     "subTipoDocumental": "entroncamiento",
     "ruta": "@numeroSiniestro/Tramite/@incidente/@tipoTramitePago/@idUnicoTramite/@costCategory/Documentos",
     "checklistrelacionado": "CHKLST_FIN_INDM_013 CHKLST_IND_MUE_017 ",
     "fields": [{
             "type": "string",
-            "keyZbox": "folio",
             "fieldKey": "folioCaso",
             "required": false
         }, {
             "type": "string",
-            "keyZbox": "tipo",
             "fieldKey": "tipoDocumentoLegal",
             "required": false
         }, {
             "type": "date",
-            "keyZbox": "fechaDocumento",
             "fieldKey": "fechaExpedicion",
             "required": false
         }, {
             "type": "string",
-            "keyZbox": "ejecutante",
             "fieldKey": "ejecutante",
             "required": false
         }, {
             "type": "string",
-            "keyZbox": "nombreBeneficiario",
             "fieldKey": "beneficiario",
             "required": false
         }]

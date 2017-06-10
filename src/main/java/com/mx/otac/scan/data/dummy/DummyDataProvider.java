@@ -76,10 +76,10 @@ public class DummyDataProvider implements DataProvider {
     }
 
     private void refreshStaticData() {
-        countryToCities = loadTheaterData();
-        movies = loadMoviesData();
-        transactions = generateTransactionsData();
-        revenue = countRevenues();
+        //countryToCities = loadTheaterData();
+        //movies = loadMoviesData();
+        //transactions = generateTransactionsData();
+        //revenue = countRevenues();
     }
 
     /**
@@ -251,51 +251,7 @@ public class DummyDataProvider implements DataProvider {
         }
     };
 
-    /**
-     * Parse the list of countries and cities
-     */
-    private static Multimap<String, String> loadTheaterData() {
-
-        /* First, read the text file into a string */
-        StringBuffer fileData = new StringBuffer(2000);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(
-                DummyDataProvider.class.getResourceAsStream("cities.txt")));
-
-        char[] buf = new char[1024];
-        int numRead = 0;
-        try {
-            while ((numRead = reader.read(buf)) != -1) {
-                String readData = String.valueOf(buf, 0, numRead);
-                fileData.append(readData);
-                buf = new char[1024];
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String list = fileData.toString();
-
-        /*
-         * The list has rows with tab delimited values. We want the second (city
-         * name) and last (country name) values, and build a Map from that.
-         */
-        Multimap<String, String> countryToCities = MultimapBuilder.hashKeys()
-                .arrayListValues().build();
-        for (String line : list.split("\n")) {
-            String[] tabs = line.split("\t");
-            String city = tabs[1];
-            String country = tabs[tabs.length - 2];
-
-            if (!countryToCities.containsKey(country)) {
-                countryToCities.putAll(country, new ArrayList<String>());
-            }
-            countryToCities.get(country).add(city);
-        }
-
-        return countryToCities;
-
-    }
-
+    
     /**
      * Create a list of dummy transactions
      *

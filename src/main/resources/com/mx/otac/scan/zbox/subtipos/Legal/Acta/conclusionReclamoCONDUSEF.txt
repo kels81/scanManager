@@ -1,27 +1,23 @@
 {
    "tipoDocumental": "Acta",
-   "templateKey": "mxcGlobal",
+   "templateKey": "acta",
    "subtipoDocumental": "conclusionReclamoCONDUSEF",
    "ruta": "@numeroSiniestro/Expediente Legal/CONDUSEF/Documentos",
    "checklistrelacionado": "CHKLST_LEG_COND_001",
    "fields": [{
            "type": "string",
-           "keyZbox": "folio",
            "fieldKey": "folioActa",
            "required": false
        },{
            "type": "string",
-           "keyZbox": "tipo",
            "fieldKey": "tipoActa",
            "required": false
        },{
            "type": "string",
-           "keyZbox": "asunto",
            "fieldKey": "asunto",
            "required": false
        },{
            "type": "date",
-           "keyZbox": "fechaDocumento",
            "fieldKey": "fechaExpedicion",
            "required": false  
        }] 

@@ -3,6 +3,7 @@ package com.mx.otac.scan.view.transactions;
 import java.text.SimpleDateFormat;
 
 import com.google.common.eventbus.Subscribe;
+import com.mx.otac.scan.component.WindowViewer;
 import com.mx.otac.scan.util.Constantes;
 import com.mx.otac.scan.util.FileTransactions;
 import com.vaadin.data.Container.Filterable;
@@ -31,12 +32,10 @@ import com.vaadin.ui.AbstractTextField;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.Table.Align;
@@ -117,7 +116,7 @@ public final class TransactionsView extends VerticalLayout implements View {
         return header;
     }
 
-     private Component buildFilter() {
+    private Component buildFilter() {
         final TextField filter = new TextField();
         filter.addTextChangeListener(new TextChangeListener() {
             @Override
@@ -311,7 +310,11 @@ public final class TransactionsView extends VerticalLayout implements View {
             w.focus();
         });
         menu.addItem("Metadatos", FontAwesome.CODE, (MenuBar.MenuItem selectedItem) -> {
-            fileTrans.viewPDF(UI.getCurrent(), file);
+            //fileTrans.viewPDF(UI.getCurrent(), file);
+            WindowViewer viewerWindow = new WindowViewer(file);
+            Window w = viewerWindow;
+            UI.getCurrent().addWindow(w);
+            w.focus();
         });
 
         return btnMenu;

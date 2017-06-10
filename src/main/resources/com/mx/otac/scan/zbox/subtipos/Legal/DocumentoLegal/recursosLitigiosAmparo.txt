@@ -1,32 +1,27 @@
 {
      "tipoDocumental": "Documento Legal",
-    "templateKey": "mxcGlobal",
+    "templateKey": "documentoLegal",
     "subTipoDocumental": "recursosLitigiosAmparo",
     "ruta": "@numeroSiniestro/Expediente Legal/Litigios/Documentos",
     "checklistrelacionado": "CHKLST_LEG_LITG_002",
     "fields": [{
             "type": "date",
-            "keyZbox": "fechaDocumento",
             "fieldKey": "fechaExpedicion",
             "required": false
         }, {
             "type": "string",
-            "keyZbox": "tipo",
             "fieldKey": "tipoDocumentoLegal",
             "required": false
         }, {
             "type": "string",
-            "keyZbox": "folio",
             "fieldKey": "folioCaso",
             "required": false
         }, {
             "type": "string",
-            "keyZbox": "asunto",
             "fieldKey": "asunto",
             "required": false
         },  {
             "type": "string",
-            "keyZbox": "ejecutante",
             "fieldKey": "ejecutante",
             "required": false
         }]

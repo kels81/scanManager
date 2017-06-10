@@ -10,11 +10,9 @@ import com.box.sdk.BoxAPIException;
 import com.box.sdk.BoxFile;
 import com.box.sdk.BoxFolder;
 import com.box.sdk.BoxItem;
-import com.box.sdk.BoxMetadataFilter;
 import com.box.sdk.BoxSearch;
 import com.box.sdk.BoxSearchParameters;
 import com.box.sdk.Metadata;
-import com.box.sdk.MetadataTemplate;
 import com.box.sdk.PartialCollection;
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
@@ -43,6 +41,8 @@ import java.util.StringTokenizer;
  * @author Edrd
  */
 public class CargarDocumentoBox {
+    
+    private static DetailExceptions detail = new DetailExceptions();
 
     private static BoxAPIConnection api;
 
@@ -79,7 +79,10 @@ public class CargarDocumentoBox {
                      * HABERLO SUBIDO, YA QUE NO HA SIDO INDEXADO POR PARTE DE
                      * BOX PARA SU BUSQUEDA POR PALABRA
                      */
-                    idFolder = ex.getDetails().getConflictId();
+                    //idFolder = ex.getDetails().getConflictId();
+                    DetailExceptions details = getDetails(ex.getResponse());
+                    idFolder = details.getConflictId();
+                    System.out.println("detailsId = " + idFolder);
                 }
             }
             rootCarpeta = new BoxFolder(api, idFolder);
@@ -93,7 +96,7 @@ public class CargarDocumentoBox {
         //System.out.println("objetoBuscar" + objetoBuscar);
         //System.out.println("idFolderPadre" + idFolderPadre);
         String idFolder = "";
-        BoxFolder folder = new BoxFolder(this.api, idFolderPadre);
+        BoxFolder folder = new BoxFolder(api, idFolderPadre);
         for (BoxItem.Info itemInfo : folder) {
             if (itemInfo instanceof BoxFolder.Info) {
                 if (itemInfo.getName().equals(objetoBuscar)) {
@@ -108,7 +111,7 @@ public class CargarDocumentoBox {
     public String existeDocumento(String[] objetoBuscar, String idFolderPadre) {
         //Boolean exist = Boolean.FALSE;
         String idFile = "";
-        BoxFolder file = new BoxFolder(this.api, idFolderPadre);
+        BoxFolder file = new BoxFolder(api, idFolderPadre);
         for (BoxItem.Info itemInfo : file) {
             if (itemInfo.getName().equals(objetoBuscar[0]) || itemInfo.getName().equals(objetoBuscar[1])) {
                 idFile = itemInfo.getID();
@@ -139,12 +142,12 @@ public class CargarDocumentoBox {
             searchResults = bs.searchRange(offset, limit, bsp);
             fullSizeOfResult = searchResults.fullSize();
             for (BoxItem.Info result : searchResults) {
-                BoxFolder.Info folderInfo = result.getParent();
-                if (idFolderPadre.equals(folderInfo.getID())) {
-                    if (folderInfo.getName().equals(objetoBuscar)) {
-                        idFolder = result.getID();
-                    }
+                //BoxFolder.Info folderInfo = result.getParent();
+                //if (idFolderPadre.equals(folderInfo.getID())) {
+                if (result.getName().equals(objetoBuscar)) {
+                    idFolder = result.getID();
                 }
+                //}
             }
 
             offset += limit;
@@ -178,7 +181,6 @@ public class CargarDocumentoBox {
     }
 
     public Boolean reemplazarComodin(String ruta, DocumentoVO documentoVO) {
-        System.out.println("ruta -> "+ruta);
         Boolean resultado = Boolean.TRUE;
         String comodinStr = "";
         String separador = "@";
@@ -192,9 +194,7 @@ public class CargarDocumentoBox {
                     documentoVO.setPath(ruta);
                 }
 
-                //} catch (NullPointerException exception) {
             } catch (Exception exception) {
-                //System.out.println("exception = " + exception + " " + comodinStr);
                 documentoVO.setTipoOpcion(6);
                 documentoVO.setComodin(comodinStr);
                 resultado = Boolean.FALSE;
@@ -311,9 +311,6 @@ public class CargarDocumentoBox {
                         jsonObject = JsonObject.readFrom(documentoVO.getContenidoJson());
                         fields = (JsonArray) jsonObject.get("fields");
                         jsonTiposDocumentales.add(jsonObject);
-                        System.out.format("Metadatos: %s \n", documentoVO.getMetadatos());
-                        System.out.format("idDocumento: %s, nombreDOcumento: %s \n", documentoVO.getIdDocumento(), documentoVO.getNombreDocumento());
-
                         camposObligatorios = verificarCamposRequeridos(fields.iterator(), documentoVO);
                     } else {
                         break;
@@ -338,7 +335,6 @@ public class CargarDocumentoBox {
              */
             if (allCamposObligatorios.isEmpty()) {
                 resultado = verificarRuta(documentoVO, jsonTiposDocumentales);
-                //documentoVO.setTipoOpcion(documentoVO.getIdError() != 0 ? 2 : 1);
                 documentoVO.setTipoOpcion(documentoVO.getTipoOpcion() == 0 ? 1 : documentoVO.getTipoOpcion());
             } else {
                 resultado = false;
@@ -346,7 +342,6 @@ public class CargarDocumentoBox {
                 documentoVO.setElementos(allCamposObligatorios);
             }
         } catch (Exception e) {
-            //System.out.println("ex verificarMetadatos " + e);
             System.out.println("Problema con contenido json del subtipo documental");
         }
 
@@ -385,9 +380,7 @@ public class CargarDocumentoBox {
         try {
             BoxFile documento = null;
             String idDocumento = null;
-            if (getIdFolder(documentoVO, jsonTiposDocumentales)) {
-
-                //String idCarpetaSubir = getIdFolder(documentoVO, jsonTiposDocumentales);
+           if (getIdFolder(documentoVO, jsonTiposDocumentales)) {
                 /**
                  * VALIDAR SI SE SUBE UN DOCUMENTO NUEVO A LA RUTA ESPECIFICADA
                  * O MOVER UN DOCUMENTO A LA RUTA ESPECIFICADA
@@ -398,7 +391,6 @@ public class CargarDocumentoBox {
                  * SE SETEA EL VALOR DE IDDOCUMENTO, PARA OCUPARSE EN EL OBJETO
                  * DE TIPO RESPUESTA
                  */
-                //documentoVO.setIdDocumento(documentoVO.getIdError() != 0 ? documentoVO.getIdDocumento() : idDocumento);
                 documentoVO.setIdDocumento(documentoVO.getTipoOpcion() != 0 ? documentoVO.getIdDocumento() : idDocumento);
 
                 if (documentoVO.getTipoOpcion() == 0) {
@@ -487,7 +479,7 @@ public class CargarDocumentoBox {
 
     private boolean asignarMetadatos(Iterator<JsonValue> values, DocumentoVO documentoVO, BoxFile documento, String templateKey) {
         boolean respuesta;
-        MetadataTemplate metadataTipoDocumental = new MetadataTemplate(templateKey, api);
+        Metadata metadataTipoDocumental = new Metadata();
         while (values.hasNext()) {
             JsonValue obj = values.next();
             JsonObject jsonObjField = obj.asObject();
@@ -495,26 +487,14 @@ public class CargarDocumentoBox {
             //String value = (documentoVO.getMetadato(fieldKey) == null ? "" : documentoVO.getMetadato(fieldKey).trim());
             String value = (documentoVO.getMetadato(jsonObjField.get("fieldKey").asString()) == null ? ""
                     : documentoVO.getMetadato(jsonObjField.get("fieldKey").asString()).trim());
-            metadataTipoDocumental.add(fieldKey, value);
+            metadataTipoDocumental.add("/" + fieldKey, value);
         }
-        /**
-         * SE TIENE QUE ELIMINAR DEL METADATA LOS CAMPOS CON VALOR VACIO,
-         * ESPECIALMENTE LOS DE TIPO DATE YA QUE SI EXISTE ALGUNO DE ESTE TIPO
-         * VACIO, NO SE LLEVA A CABO LA ASIGNACION DEL TEMPLATE.
-         */
-        JsonObject jsonObject = JsonObject.readFrom(metadataTipoDocumental.toString());
-        for (String name : jsonObject.names()) {
-            JsonValue value = jsonObject.get(name);
-            if (value.asString().equals("")) {
-                metadataTipoDocumental.remove(name);
-            }
-        }
-
+        //System.out.println("metadataTipoDocumental = " + metadataTipoDocumental.toString());
         /**
          * SE LE ASIGNA EL METADATA TEMPLATE (TIPO DOCUMENTAL) AL DOCUMENTO
          */
-        respuesta = documento.createMetadaTemplate(templateKey, metadataTipoDocumental);
-        return respuesta;
+        Metadata metadata = documento.createMetadata(templateKey, metadataTipoDocumental);
+        return respuesta = Boolean.TRUE;
     }
 
     private String encodeCharSet(String palabra) {
@@ -535,23 +515,20 @@ public class CargarDocumentoBox {
 
         String strArea = documentoVO.getMetadato("area");
         strArea = strArea.replaceAll("\\s", "");
-        String strTipo = documentoVO.getMetadato("tipodocumental");
-        String strExtension = documentoVO.getMetadato("extension");
+        String strTipoDocumental = documentoVO.getMetadato("tipodocumental");
 
-        if (!subTipoDocumental.equals(Constantes.TIPO_SINIESTRO)) {
-            String codigoTipoSiniestro = documentoVO.getMetadato("tipoSiniestro") == null ? "" : documentoVO.getMetadato("tipoSiniestro");
-            documentoVO.setMetadato("tipoSiniestro", codigoTipoSiniestro);
-            strPath = "subtipos/" + strArea + "/" + strTipo+ "/" + subTipoDocumental + strExtension;
-            InputStream is = Constantes.class.getResourceAsStream(strPath);
+//        if (!subTipoDocumental.equals(Constantes.TIPO_SINIESTRO)) {
+            strPath = "subtipos/" + strArea + "/" + strTipoDocumental + "/" + subTipoDocumental + ".txt";
+            //InputStream is = Constantes.class.getResourceAsStream(strPath);
             documentoVO.setPath(strPath);
             resp = true;
-        } else {
-            strPath = "subtipos/" + Constantes.TIPO_SINIESTRO + ".txt";
-            InputStream is = Constantes.class.getResourceAsStream(strPath);
-            documentoVO.setPath(strPath);
-            documentoVO.setMetadato("area", strArea);
-            resp = true;
-        }
+//        } else {
+//            strPath = "subtipos/" + Constantes.TIPO_SINIESTRO + ".txt";
+//            InputStream is = Constantes.class.getResourceAsStream(strPath);
+//            documentoVO.setPath(strPath);
+//            documentoVO.setMetadato("area", strArea);
+//            resp = true;
+//        }
 
         return resp;
 
@@ -559,12 +536,9 @@ public class CargarDocumentoBox {
 
     public boolean leerContenidoJson(DocumentoVO documentoVO) {
 
-        String str = "", strContenidoJSON = "";
+        String str = "";
         StringBuilder buf = new StringBuilder();
-        System.out.println("as "+WindowPDF.class.getResourceAsStream(documentoVO.getPath()));
-        System.out.println("no "+ WindowPDF.class.getResource(documentoVO.getPath()));
-        InputStream is = WindowPDF.class.getResourceAsStream(documentoVO.getPath());
-        System.out.println("leerContenidoJson -> " + documentoVO.getPath());
+        InputStream is = CargarDocumentoBox.class.getResourceAsStream(documentoVO.getPath());
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             if (is != null) {
@@ -572,12 +546,10 @@ public class CargarDocumentoBox {
                     buf.append(str + "\n");
                 }
             }
-            System.out.println("buf -> "+buf.toString());
             documentoVO.setContenidoJson(buf.toString());
             return true;
         } catch (Exception e) {
             System.out.println("ex leerContenidoJson " + e);
-            e.printStackTrace();
         } finally {
             try {
                 is.close();
@@ -587,32 +559,103 @@ public class CargarDocumentoBox {
 
         return false;
     }
+    
+   private static DetailExceptions getDetails(String json) {
 
-    public String leerContenidoChecklistJson(String nombreChecklist) {
-        System.out.println("entra a consyultar = ");
-        String str = "", strContenidoJSON = "";
-        StringBuilder buf = new StringBuilder();
-        InputStream is = Constantes.class.getResourceAsStream("checklist/" + nombreChecklist + ".txt");
-        System.out.println("is = " + is);
+        JsonObject jsonObj = JsonObject.readFrom(json);
+        DetailExceptions details = getValuesJson(jsonObj, "");
 
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            if (is != null) {
-                while ((str = reader.readLine()) != null) {
-                    buf.append(str + "\n");
+        return details;
+    }
+
+    private static DetailExceptions getValuesJson(JsonObject jsonObj, String nameGroup) {
+        //private static void getValuesJson(JsonObject jsonObj) {
+//        DetailExceptions detail = new DetailExceptions();
+        for (JsonObject.Member member : jsonObj) {
+            String groupName = nameGroup;
+            //System.out.println("groupName = " + groupName);
+            String memberName = member.getName();
+            //System.out.println("memberName = " + memberName);
+            JsonValue value = member.getValue();
+            //System.out.println("value = " + value);
+            if (value instanceof JsonObject) {
+                //JsonObject object = value.asObject();
+                groupName = member.getName();
+                jsonObj = value.asObject();
+                getValuesJson(jsonObj, groupName);
+            } else if (value instanceof JsonArray) {
+                JsonArray array = value.asArray();
+                for (int i = 0; i < array.size(); i++) {
+                    if (array.get(i) instanceof JsonObject) {
+                        //JsonObject arrayObj = array.get(i).asObject();
+                        groupName = member.getName();
+                        jsonObj = array.get(i).asObject();
+                        getValuesJson(jsonObj, groupName);
+                    }
                 }
             }
-        } catch (Exception e) {
-            System.out.println("ex leerContenidoJson " + e);
-        } finally {
-            try {
-                is.close();
-            } catch (Throwable ignore) {
+
+            switch (groupName) {
+                case "":
+                    switch (memberName) {
+                        case "type":
+                            detail.setType(value.asString());
+                            break;
+                        case "status":
+                            detail.setStatus(value.asInt());
+                            break;
+                        case "code":
+                            detail.setCode(value.asString());
+                            break;
+                        case "help_url":
+                            detail.setHelpUrl(value.asString());
+                            break;
+                        case "message":
+                            detail.setMessage(value.asString());
+                            break;
+                        case "request_id":
+                            detail.setRequestId(value.asString());
+                            break;
+                    }
+                    break;
+                case "conflicts":
+                    switch (memberName) {
+                        case "type":
+                            detail.setConflictsType(value.asString());
+                            break;
+                        case "id":
+                            detail.setConflictId(value.asString());
+                            break;
+                        case "sequence_id":
+                            detail.setConflictsSequenceId(value.asString());
+                            break;
+                        case "etag":
+                            detail.setConflictsEtag(value.asString());
+                            break;
+                        case "sha1":
+                            detail.setConflictsSha1(value.asString());
+                            break;
+                        case "name":
+                            detail.setConflictsName(value.asString());
+                            break;
+                    }
+                    break;
+                case "file_version":
+                    switch (memberName) {
+                        case "type":
+                            detail.setFileVerType(value.asString());
+                            break;
+                        case "id":
+                            detail.setFileVerId(value.asString());
+                            break;
+                        case "sha1":
+                            detail.setFileVerSha1(value.asString());
+                            break;
+                    }
+                    break;
             }
         }
-        strContenidoJSON = buf.toString();
-
-        return strContenidoJSON;
+        return detail;
     }
 
 }

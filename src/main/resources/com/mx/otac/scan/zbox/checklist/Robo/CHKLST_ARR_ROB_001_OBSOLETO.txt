@@ -1,8 +1,0 @@
-{
-    "checkList": "CHKLST_ARR_ROB_001",
-    "elementos": [{
-            "subTipoDocumental": "fotografiaArriboRobo",
-            "area": "Robo",
-            "obligatorio": false            
-        }]
-}

@@ -1,22 +1,19 @@
 {
     "tipoDocumental": "Contrato",
-    "templateKey": "mxcGlobal",
+    "templateKey": "contrato",
     "subTipoDocumental": "convenio",
     "ruta": "@numeroSiniestro/Expediente Técnico Daños Materiales/Ajuste/Documentos/@operacion",
     "checklistrelacionado": "CHKLST_AJT_ASG_001 CHKLST_REM_RECT_005",
     "fields": [{
             "type": "string",
-            "keyZbox": "asunto",
             "fieldKey": "asunto",
             "required": false
         }, {
             "type": "string",
-            "keyZbox": "tipo",
             "fieldKey": "tipoContrato",
             "required": false
         }, {
             "type": "date",
-            "keyZbox": "fechaDocumento",
             "fieldKey": "fechaContrato",
             "required": false
         }]

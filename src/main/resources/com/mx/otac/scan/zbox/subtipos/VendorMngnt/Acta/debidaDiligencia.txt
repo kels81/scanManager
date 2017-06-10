@@ -1,17 +1,15 @@
 {
     "tipoDocumental": "Acta",
-    "templateKey": "mxcGlobal",
+    "templateKey": "acta",
     "subTipoDocumental": "debidaDiligencia",
     "ruta": "Proveedores/@tipoProveedor/@idProveedor/@tipoOficina",
     "checklistrelacionado": "CHKLST_VNDMG_PTPA",
     "fields": [{
             "type": "string",
-            "keyZbox": "tipo",
             "fieldKey": "tipoEvento",
             "required": false
         }, {
             "type": "date",
-            "keyZbox": "fechaDocumento",
             "fieldKey": "fechaExpedicion",
             "required": false
         }]

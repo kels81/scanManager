@@ -1,27 +1,23 @@
 {
     "tipoDocumental": "Acta",
-    "templateKey": "mxcGlobal",
+    "templateKey": "acta",
     "subTipoDocumental": "dictamenInstitucionAutorizada",
     "ruta": "@numeroSiniestro/Tramite/@incidente/@tipoTramitePago/@idUnicoTramite/@costCategory/Documentos",
     "checklistrelacionado": "CHKLST_INC_PP_010 CHKLST_INC_PT_011 CHKLST_RC_CONT_036",
     "fields": [{
             "type": "string",
-	    "keyZbox": "folio",
             "fieldKey": "folioActa",
             "required": false
         }, {
             "type": "string",
-            "keyZbox": "tipo",
             "fieldKey": "tipoActa",
             "required": false
         }, {
             "type": "date",
-            "keyZbox": "fechaDocumento",
             "fieldKey": "fechaActa",
             "required": false
         }, {
             "type": "string",
-            "keyZbox": "monto",
             "fieldKey": "monto",
             "required": false
         }]

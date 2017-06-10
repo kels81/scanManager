@@ -1,8 +1,0 @@
-{
-    "checkList": "CHKLST_ARR_001",
-    "elementos": [{
-            "subTipoDocumental": "fotografiaArribo",
-            "area": "Ajuste",
-            "obligatorio": false            
-        }]
-}

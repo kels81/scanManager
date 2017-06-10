@@ -5,7 +5,7 @@
  */
 package com.mx.otac.scan.util;
 
-import com.mx.otac.scan.zbox.WindowPDF;
+import com.mx.otac.scan.component.WindowViewer;
 import com.vaadin.ui.UI;
 import java.io.File;
 import java.io.IOException;
@@ -42,7 +42,7 @@ public class FileTransactions {
         return confirm;
     }
 
-    public void viewPDF(UI ui, File file) {
-        new WindowPDF(ui, file);
-    }
+//    public void viewPDF(UI ui, File file) {
+//        new WindowViewer(ui, file);
+//    }
 }

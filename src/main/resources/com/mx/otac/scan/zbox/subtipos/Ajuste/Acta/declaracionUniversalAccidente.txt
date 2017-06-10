@@ -1,22 +1,19 @@
 {
     "tipoDocumental": "Acta",
-    "templateKey": "mxcGlobal",
+    "templateKey": "acta",
     "subTipoDocumental": "declaracionUniversalAccidente",
     "ruta": "@numeroSiniestro/Expediente Técnico Daños Materiales/Ajuste/Documentos/@operacion",
     "checklistrelacionado": "CHKLST_AJT_ASG_001 CHKLST_AJT_TRC_001 CHKLST_RCPR_001",
     "fields": [{
             "type": "string",
-	    "keyZbox": "folio",
             "fieldKey": "folioActa",
             "required": false
         }, {
             "type": "string",
-            "keyZbox": "tipo",
             "fieldKey": "tipoActa",
             "required": false
         }, {
             "type": "date",
-            "keyZbox": "fechaDocumento",
             "fieldKey": "fechaExpedicion",
             "required": false
         } ]
