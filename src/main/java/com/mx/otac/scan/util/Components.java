@@ -63,7 +63,7 @@ public class Components {
     public MenuBar createMenuBar() {
         MenuBar menu = new MenuBar();
         menu.addStyleName(ValoTheme.MENUBAR_SMALL);
-        menu.addStyleName("primary");
+        menu.addStyleName(ValoTheme.MENUBAR_BORDERLESS);
         return menu;
     }
 

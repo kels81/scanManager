@@ -5,10 +5,12 @@
  */
 package com.mx.otac.scan.component;
 
-import com.google.gson.Gson;
 import com.mx.otac.scan.util.DataProvider;
 import com.mx.otac.scan.util.Components;
 import com.mx.otac.scan.util.Constantes;
+import com.mx.otac.scan.util.FileTransactions;
+import com.mx.otac.scan.util.Notifications;
+import com.mx.otac.scan.view.transactions.TransactionsView;
 import com.mx.otac.scan.zbox.CargarDocumentoBox;
 import com.mx.otac.scan.zbox.DocumentoVO;
 import com.mx.otac.scan.zbox.Field;
@@ -27,11 +29,7 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
-import com.vaadin.ui.themes.ValoTheme;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +51,7 @@ public class WindowViewer extends Window {
     private ComboBox cbxArea;
     private ComboBox cbxTipoDocumental;
     private ComboBox cbxSubtipoDocumental;
+    private TextField txtSiniestro;
 
     private VerticalLayout vltForm;
     private VerticalLayout vltCombos;
@@ -61,6 +60,8 @@ public class WindowViewer extends Window {
     private final HorizontalLayout hltContent;
     private final Components component = new Components();
     private final DataProvider data = new DataProvider();
+    private final Notifications notification = new Notifications();
+    private final FileTransactions fileTrans = new FileTransactions();
 
     private Button btnGuardar;
 
@@ -151,7 +152,7 @@ public class WindowViewer extends Window {
         cbxSubtipoDocumental.addValueChangeListener(event -> {
             if (cbxSubtipoDocumental.getValue() != null) {
                 cleanMetadatos();
-                vltForm.addComponent(buildFormMetadatos(rutaRaiz + "/" + cbxArea.getValue() + "/" + cbxTipoDocumental.getValue() + "/" + event.getProperty().getValue().toString()));
+                vltForm.addComponent(buildFormMetadatos(rutaRaiz + "/" + cbxArea.getValue() + "/" + cbxTipoDocumental.getValue() + "/" + event.getProperty().getValue().toString().concat(".txt")));
             } else {
                 cleanMetadatos();
             }
@@ -166,7 +167,7 @@ public class WindowViewer extends Window {
         vltMetadatos.setSpacing(true);
 
         arrComponents = new ArrayList<>();
-        subtipoDocumental = this.getDatos(rutaArchivoJson);
+        subtipoDocumental = data.getDatos(rutaArchivoJson);
 
         for (Field field : subtipoDocumental.getFields()) {
             if (field.getType().equals("date")) {
@@ -191,6 +192,10 @@ public class WindowViewer extends Window {
                 vltMetadatos.addComponent((DateField) obj);
             }
         }
+        
+        txtSiniestro = component.createTextField("Número Siniestro");
+        vltMetadatos.addComponent(txtSiniestro);
+                
         vltMetadatos.addComponent(buildFooter());
 
         return vltMetadatos;
@@ -206,10 +211,14 @@ public class WindowViewer extends Window {
             Boolean confirm = this.subirMetadatos(file);
 
             if (confirm) {
-                Notification.show("Exitoso");
+                Boolean mover = fileTrans.checkDir(file);
+                System.out.println("mover = " + mover);
+                new TransactionsView().uptadeTable();
+               notification.createSuccess("Se guardo correctamente");
             } else {
-                Notification.show("Erroneo");
+                notification.createFailure("Error al guardar");
             }
+            close();
         });
 
         footer.addComponent(btnGuardar);
@@ -226,19 +235,9 @@ public class WindowViewer extends Window {
         }
     }
 
-    public SubtipoDocumental getDatos(String jsonStr) {
-        Gson gson = new Gson();
-        SubtipoDocumental subtipo = null;
-        try (Reader reader = new FileReader(jsonStr)) {
-            subtipo = gson.fromJson(reader, SubtipoDocumental.class);
-        } catch (IOException e) {
-        }
-        return subtipo;
-    }
-
     public Boolean subirMetadatos(File file) {
+        
         Map<String, String> metadatos = new HashMap<>();
-
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"); //FORMATO TIME-STAMP QUE RECIBE BOX PARA LA FECHA
 
         System.out.println(arrComponents.size());
@@ -253,9 +252,7 @@ public class WindowViewer extends Window {
             } else if (obj.getClass().equals(DateField.class)) {
                 try {
                     if (!((DateField) obj).isEmpty()) {
-                        //date = ((DateField)obj).getValue().toString();
                         metadatos.put(((DateField) obj).getCaption(), sdf.format(((DateField) obj).getValue()));
-
                     } else if (((DateField) obj).isRequired()) {
                         faltanObligatorios = true;
                     }
@@ -269,22 +266,21 @@ public class WindowViewer extends Window {
             Notification.show("Datos Faltantes", "Completa los campos requeridos.", Notification.Type.WARNING_MESSAGE);
         }
 
-        System.out.println("INICIO");
+        System.out.println("----- INICIO -----");
 
         CargarDocumentoBox cargarDoc = new CargarDocumentoBox();
+        String strSubtipo = cbxSubtipoDocumental.getValue().toString();
 
         DocumentoVO documentoVO = new DocumentoVO();
         documentoVO.setInputStream(file);
 
-        //SINIESTRO
-        metadatos.put("numeroSiniestro", "66");
+        metadatos.put("numeroSiniestro", txtSiniestro.getValue());
         metadatos.put("area", cbxArea.getValue().toString());
         metadatos.put("tipodocumental", cbxTipoDocumental.getValue().toString());
         metadatos.put("operacion", "Tercero");
 
         documentoVO.setMetadatos(metadatos);
-        String strSubtipo = cbxSubtipoDocumental.getValue().toString();
-        strSubtipo = strSubtipo.substring(0, strSubtipo.indexOf("."));
+        //strSubtipo = strSubtipo.substring(0, strSubtipo.indexOf("."));
         documentoVO.setSubTipoDocumental(strSubtipo);
         documentoVO.setNombreDocumento(strSubtipo + "_" + file.getName());
 
@@ -292,10 +288,11 @@ public class WindowViewer extends Window {
             System.out.format("Atributo : [ %s ], Valor : [ %s ] \n", entry.getKey(), entry.getValue());
         }
 
+        //Boolean resultado = true;
         Boolean resultado = cargarDoc.verificarMetadatos(documentoVO);
 
+        System.out.println("----- FIN -----");
         System.out.println("boolean resultado -> " + resultado);
-
         return resultado;
     }
 

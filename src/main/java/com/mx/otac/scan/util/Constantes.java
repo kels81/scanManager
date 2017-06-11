@@ -15,12 +15,14 @@ public class Constantes {
     
     //CARPETA DE ARCHIVOS PC
     public static final String ROOT_PATH = "C:\\Users\\Edrd\\Documents\\GitHub\\scanManager\\Archivos";
+    public static final String TARGET_DIR = "C:\\BoxTest";
+    
     //public static final String ROOT_PATH = "C:\\Users\\OTAC\\Desktop\\BPM\\img";
     //CARPETA SUBTIPOS
     public static final String RUTA_RAIZ = CargarDocumentoBox.class.getResource("templates.json").getPath().replace("templates.json", "subtipos");
     
     //BOX
-    public static final String DEVELOPER_TOKEN = "5ctGjZ22LUIRLYxQevdHFYh9fbCteT9K";
+    public static final String DEVELOPER_TOKEN = "anlRtth6i0NNBOvsLBSNHkkwpnbIv3BL";
     
     public static final String ID_FOLDER_SINIESTRO = "28924547437";
     

@@ -42,7 +42,7 @@ import java.util.StringTokenizer;
  */
 public class CargarDocumentoBox {
     
-    private static DetailExceptions detail = new DetailExceptions();
+    private static final DetailExceptions detail = new DetailExceptions();
 
     private static BoxAPIConnection api;
 

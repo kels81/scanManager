@@ -5,7 +5,12 @@
  */
 package com.mx.otac.scan.util;
 
+import com.google.gson.Gson;
+import com.mx.otac.scan.zbox.SubtipoDocumental;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,11 +67,21 @@ public class DataProvider {
         for (int i = 0; i < arrTemp.length; i++) {
             if (arrTemp[i].isDirectory() || isSubtipo) {
                 if (!arrTemp[i].getName().contains("OBSOLETO") && !arrTemp[i].getName().contains("Obsoleto") && !arrTemp[i].getName().contains("obsoleto")) {
-                    areaFolders.add(arrTemp[i].getName());
+                    areaFolders.add(arrTemp[i].getName().replace(".txt", ""));
                 }//areaFolders.add(arrTemp[i].getName());
             }
         }//areaFolders.add("Crear nuevo");
         return areaFolders;
+    }
+    
+    public SubtipoDocumental getDatos(String jsonStr) {
+        Gson gson = new Gson();
+        SubtipoDocumental subtipo = null;
+        try (Reader reader = new FileReader(jsonStr)) {
+            subtipo = gson.fromJson(reader, SubtipoDocumental.class);
+        } catch (IOException e) {
+        }
+        return subtipo;
     }
     
     

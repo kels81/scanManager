@@ -8,22 +8,22 @@ import com.mx.otac.scan.domain.DashboardNotification;
 public abstract class DummyDataGenerator {
 
     static String randomFirstName() {
-        String[] names = { "Dave", "Mike", "Katherine", "Jonas", "Linus",
-                "Bob", "Anne", "Minna", "Elisa", "George", "Mathias", "Pekka",
-                "Fredrik", "Kate", "Teppo", "Kim", "Samatha", "Sam", "Linda",
-                "Jo", "Sarah", "Ray", "Michael", "Steve" };
+        String[] names = { "Daniel", "Miguel", "Karla", "Juan", "Luis",
+                "Bernardo", "Ana", "Miriam", "Elisa", "Jorge", "Matias", "Pedro",
+                "Alfredo", "Katia", "Alfonso", "Patricia", "Samantha", "Samuel", "Linda",
+                "Jeremias", "Sara", "Raymundo", "Maria", "Susana" };
         return names[(int) (Math.random() * names.length)];
     }
 
     static String randomLastName() {
-        String[] names = { "Smith", "Lehtinen", "Chandler", "Hewlett",
-                "Packard", "Jobs", "Buffet", "Reagan", "Carthy", "Wu",
-                "Johnson", "Williams", "Jones", "Brown", "Davis", "Moore",
-                "Wilson", "Taylor", "Anderson", "Jackson", "White", "Harris",
-                "Martin", "King", "Lee", "Walker", "Wright", "Clark",
-                "Robinson", "Garcia", "Thomas", "Hall", "Lopez", "Scott",
-                "Adams", "Barker", "Morris", "Cook", "Rogers", "Rivera",
-                "Gray", "Price", "Perry", "Powell", "Russell", "Diaz" };
+        String[] names = { "Hernández", "García", "Mercado", "Ramírez",
+                "Rodríguez", "González", "Martínez", "López", "Valero", "Quintero",
+                "Pérez", "Sánchez", "Flores", "Martínez", "Díaz", "Cruz",
+                "Castro", "Camarena", "Sanchez", "Márquez", "Barroso", "Peña",
+                "Camacho", "Ávila", "Corona", "Velarde", "Vera", "Sandoval",
+                "Solís", "Garcia", "Andrade", "Acosta", "Lopez", "Castillo",
+                "Ramos", "Méndez", "Bichir", "Almada", "Bermúdez", "Rivera",
+                "Salinas", "Calderon", "De León", "Quivera", "Duarte", "Diaz" };
         return names[(int) (Math.random() * names.length)];
     }
 
