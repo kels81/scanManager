@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -21,20 +22,30 @@ import java.util.List;
 public class DataProvider {
     
      public List<File> directoryContents(File directory) {
-        // ARRAY QUE VA A ACONTENER TODOS LOS ARCHIVOS ORDENADOS POR TIPO Y ALFABETICAMENTE
+        // ARRAY QUE VA A ACONTENER TODOS LOS ARCHIVOS ORDENADOS POR TIPO Y 
+        String[] extensionsPermited = new String[] { "pdf", "jpg", "png", "jpeg", "gif" };
+        
         List<File> allDocsLst = new ArrayList<>();
-        File[] files = directory.listFiles();
+        //File[] files = directory.listFiles();
         List<File> fileLst = new ArrayList<>();
         List<File> directoryLst = new ArrayList<>();
+        
+        List<File> files = (List<File>) FileUtils.listFiles(directory, extensionsPermited, true);
+        
+        
         for (File file : files) {
-            if (file.isDirectory()) {
-                directoryLst.add(file);
+            //if (file.isDirectory()) {
+                //directoryLst.add(file);
                 //directoryContents(file);   //para conocer los archivos de las subcarpetas
-            } else {
+            //} else {
+            if (file.isFile()) {
+                
                 fileLst.add(file);
             }
+                
+            //}
         }
-        allDocsLst.addAll(directoryLst);
+        //allDocsLst.addAll(directoryLst);
         allDocsLst.addAll(fileLst);
 
         return allDocsLst;

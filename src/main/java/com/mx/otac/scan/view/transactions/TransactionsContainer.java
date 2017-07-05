@@ -6,12 +6,9 @@
 package com.mx.otac.scan.view.transactions;
 
 import com.mx.otac.scan.util.Constantes;
-import com.mx.otac.scan.data.DirectoryContentData;
+import com.mx.otac.scan.util.DataProvider;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
-import com.vaadin.server.FontAwesome;
-import com.vaadin.shared.ui.label.ContentMode;
-import com.vaadin.ui.Label;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -29,7 +26,7 @@ import org.apache.commons.io.FileUtils;
  */
 public class TransactionsContainer {
 
-    private final DirectoryContentData content = new DirectoryContentData();
+    private final DataProvider content = new DataProvider();
     private File rootPath;
 
     public IndexedContainer crearContenedor() {

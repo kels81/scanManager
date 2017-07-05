@@ -41,7 +41,7 @@ import java.util.StringTokenizer;
  * @author Edrd
  */
 public class CargarDocumentoBox {
-    
+
     private static final DetailExceptions detail = new DetailExceptions();
 
     private static BoxAPIConnection api;
@@ -172,8 +172,8 @@ public class CargarDocumentoBox {
              * SE SETEAN LOS SIGUIENTES VALORES PARA LUEGO OCUPARLOS EN EL
              * OBJETO RESPUESTA
              */
-            documentoVO.setTipoOpcion(10);
-            documentoVO.setIdDocumento(apiException.getDetails().getConflictId());
+            //documentoVO.setTipoOpcion(10);
+            //documentoVO.setIdDocumento(apiException.getDetails().getConflictId());
         } catch (FileNotFoundException ex) {
         } catch (IOException ioe) {
         }
@@ -380,7 +380,7 @@ public class CargarDocumentoBox {
         try {
             BoxFile documento = null;
             String idDocumento = null;
-           if (getIdFolder(documentoVO, jsonTiposDocumentales)) {
+            if (getIdFolder(documentoVO, jsonTiposDocumentales)) {
                 /**
                  * VALIDAR SI SE SUBE UN DOCUMENTO NUEVO A LA RUTA ESPECIFICADA
                  * O MOVER UN DOCUMENTO A LA RUTA ESPECIFICADA
@@ -518,10 +518,10 @@ public class CargarDocumentoBox {
         String strTipoDocumental = documentoVO.getMetadato("tipodocumental");
 
 //        if (!subTipoDocumental.equals(Constantes.TIPO_SINIESTRO)) {
-            strPath = "subtipos/" + strArea + "/" + strTipoDocumental + "/" + subTipoDocumental + ".txt";
-            //InputStream is = Constantes.class.getResourceAsStream(strPath);
-            documentoVO.setPath(strPath);
-            resp = true;
+        strPath = "subtipos/" + strArea + "/" + strTipoDocumental + "/" + subTipoDocumental + ".txt";
+        //InputStream is = Constantes.class.getResourceAsStream(strPath);
+        documentoVO.setPath(strPath);
+        resp = true;
 //        } else {
 //            strPath = "subtipos/" + Constantes.TIPO_SINIESTRO + ".txt";
 //            InputStream is = Constantes.class.getResourceAsStream(strPath);
@@ -559,8 +559,8 @@ public class CargarDocumentoBox {
 
         return false;
     }
-    
-   private static DetailExceptions getDetails(String json) {
+
+    private static DetailExceptions getDetails(String json) {
 
         JsonObject jsonObj = JsonObject.readFrom(json);
         DetailExceptions details = getValuesJson(jsonObj, "");
@@ -656,6 +656,37 @@ public class CargarDocumentoBox {
             }
         }
         return detail;
+    }
+
+    public boolean asignarMetadatos2(DocumentoVO documentoVO) {
+        boolean respuesta;
+
+        //CREAR CARPETA
+        String idFolder = "";
+        try {
+            BoxFolder carpetaPadre = new BoxFolder(api, Constantes.ID_FOLDER_SINIESTRO);
+            BoxFolder.Info carpetaContenedora = carpetaPadre.createFolder("Documentos");
+            idFolder = carpetaContenedora.getID();
+        } catch (BoxAPIException ex) {
+            //idFolder = ex.getDetails().getConflictId();
+            DetailExceptions details = getDetails(ex.getResponse());
+            idFolder = details.getConflictId();
+            System.out.println("detailsId = " + idFolder);
+        }
+
+        //SUBIR DOCUMENTO A LA CARPETA
+        String idDocumento = subirDocumento(documentoVO.getInputStream().toString(), documentoVO.getNombreDocumento(), idFolder, null);
+
+        //ASIGNAR METADATOS AL DOCUMENTO
+        BoxFile file = new BoxFile(api, idDocumento);
+        Metadata metadataTipoDocumental = new Metadata();
+        for (Map.Entry<String, String> entry : documentoVO.getMetadatos().entrySet()) {
+            metadataTipoDocumental.add("/" + entry.getKey(), entry.getValue());
+        }
+
+        file.createMetadata(metadataTipoDocumental);
+
+        return respuesta = Boolean.TRUE;
     }
 
 }

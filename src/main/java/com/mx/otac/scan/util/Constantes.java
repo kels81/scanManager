@@ -22,7 +22,7 @@ public class Constantes {
     public static final String RUTA_RAIZ = CargarDocumentoBox.class.getResource("templates.json").getPath().replace("templates.json", "subtipos");
     
     //BOX
-    public static final String DEVELOPER_TOKEN = "anlRtth6i0NNBOvsLBSNHkkwpnbIv3BL";
+    public static final String DEVELOPER_TOKEN = "PycmqRQO4v30qD9oF6ypJ2njszZx25Bs";
     
     public static final String ID_FOLDER_SINIESTRO = "28924547437";
     

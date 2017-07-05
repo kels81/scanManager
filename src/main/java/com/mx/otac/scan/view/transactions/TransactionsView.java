@@ -1,5 +1,8 @@
 package com.mx.otac.scan.view.transactions;
 
+import com.eclipsesource.json.JsonObject;
+import com.eclipsesource.json.JsonValue;
+import com.google.common.base.CaseFormat;
 import java.text.SimpleDateFormat;
 
 import com.google.common.eventbus.Subscribe;
@@ -7,7 +10,6 @@ import com.mx.otac.scan.util.Constantes;
 import com.mx.otac.scan.util.FileTransactions;
 import com.vaadin.data.Container.Filterable;
 import com.vaadin.data.Item;
-import com.mx.otac.scan.data.DirectoryContentData;
 import com.mx.otac.scan.event.DashboardEvent.BrowserResizeEvent;
 import com.mx.otac.scan.event.DashboardEventBus;
 import com.mx.otac.scan.util.Components;
@@ -54,14 +56,21 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.themes.ValoTheme;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,7 +92,7 @@ public final class TransactionsView extends VerticalLayout implements View {
 
     private static final String[] DEFAULT_COLLAPSIBLE = {"fecha", "tamaño"};
 
-    private final DirectoryContentData content = new DirectoryContentData();
+    private final DataProvider content = new DataProvider();
     private final FileTransactions fileTrans = new FileTransactions();
     private final Components component = new Components();
     private final Notifications notification = new Notifications();
@@ -504,265 +513,398 @@ public final class TransactionsView extends VerticalLayout implements View {
         addComponent(table);
         setExpandRatio(table, 1);
     }
-    
+
+    public void darFormato(String contenido) {
+        String palabra = "SuptipoDocumental";
+        String result = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, palabra);
+
+        String[] r = palabra.split("(?=[A-Z])");
+
+        String name
+                = palabra.replaceAll("([A-Z][a-z]+)", "$1") // Words beginning with UC
+                .replaceAll("([A-Z][A-Z]+)", "$1") // "Words" of only UC
+                .replaceAll("([^A-Za-z ]+)", ""
+                        + "$1") // "Words" of non-letters
+                .trim();
+
+        System.out.println("name = " + name);
+        System.out.println("r = " + Arrays.toString(r));
+        System.out.println("result = " + result);
+
+    }
+
+    private Map<String, String> getMetadatos(File file) {
+        String nameFile = file.getName().replace(file.getName().substring(file.getName().lastIndexOf('.') + 1), "txt");
+        System.out.println("nameFile = " + nameFile);
+
+        HashMap<String, String> map = new HashMap<>();
+
+        String line;
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(Constantes.ROOT_PATH.concat("\\").concat(nameFile)));
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split("=", 2);
+                if (parts.length >= 2) {
+                    String key = parts[0].trim();
+                    String value = parts[1].trim().replace(",", "");
+                    map.put(key, value);
+                } else {
+                    System.out.println("ignoring line: " + line);
+                }
+            }
+
+//            for (String key : map.keySet()) {
+//                System.out.println(key + ":" + map.get(key));
+//            }
+        } catch (IOException e) {
+            System.out.println("problemas " + e);
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+            }
+        }
+
+//        for (Map.Entry<String, String> entry : map.entrySet()) {
+//            System.out.format("Atributo : [ %s ], Valor : [ %s ] \n", entry.getKey(), entry.getValue());
+//        }
+
+        return map;
+
+    }
+
     public class WindowViewer extends Window {
 
-    private final String rutaRaiz = Constantes.RUTA_RAIZ;
+        private final String rutaRaiz = Constantes.RUTA_RAIZ;
 
-    private ArrayList<Object> arrComponents;
-    private SubtipoDocumental subtipoDocumental;
-    private final File file;
+        private ArrayList<Object> arrComponents;
+        private SubtipoDocumental subtipoDocumental;
+        private final File file;
 
-    private final Panel panel;
-    private ComboBox cbxArea;
-    private ComboBox cbxTipoDocumental;
-    private ComboBox cbxSubtipoDocumental;
-    private TextField txtSiniestro;
+        private final Panel panel;
+        private ComboBox cbxArea;
+        private ComboBox cbxTipoDocumental;
+        private ComboBox cbxSubtipoDocumental;
+        private TextField txtSiniestro;
 
-    private VerticalLayout vltForm;
-    private VerticalLayout vltCombos;
-    private VerticalLayout vltMetadatos;
+        private VerticalLayout vltForm;
+        private VerticalLayout vltCombos;
+        private VerticalLayout vltMetadatos;
 
-    private final HorizontalLayout hltContent;
-    private final Components component = new Components();
-    private final DataProvider data = new DataProvider();
-    private final Notifications notification = new Notifications();
-    private final FileTransactions fileTrans = new FileTransactions();
+        private final HorizontalLayout hltContent;
+        private final Components component = new Components();
+        private final DataProvider data = new DataProvider();
+        private final Notifications notification = new Notifications();
+        private final FileTransactions fileTrans = new FileTransactions();
 
-    private Button btnGuardar;
+        private Button btnGuardar;
 
-    public WindowViewer(File file) {
-        this.file = file;
+        public WindowViewer(File file) {
+            this.file = file;
 
-        setCaption(this.file.getName());
-        setDraggable(false);
-        setResizable(false);
-        setClosable(true);
-        setModal(true);
-        setSizeFull();
+            setCaption(this.file.getName());
+            setDraggable(false);
+            setResizable(false);
+            setClosable(true);
+            setModal(true);
+            setSizeFull();
 
-        panel = new Panel("Metadatos");
-        panel.setSizeFull();
+            panel = new Panel("Metadatos");
+            panel.setSizeFull();
 
-        hltContent = new HorizontalLayout();
-        hltContent.setSizeFull();
-        hltContent.setMargin(true);
-        hltContent.setSpacing(true);
+            hltContent = new HorizontalLayout();
+            hltContent.setSizeFull();
+            hltContent.setMargin(true);
+            hltContent.setSpacing(true);
 
-        Component viewer = buildViewer();
-        panel.setContent(buildForm());  //SE COLOCAL EL LAYOUT DENTRO DE UN PANEL PARA QUE TENGA SU PROPIO SCROLLBAR
+            Component viewer = buildViewer();
 
-        hltContent.addComponents(viewer, panel);
-        hltContent.setExpandRatio(viewer, 0.75f);
-        hltContent.setExpandRatio(panel, 0.25f);
+            panel.setContent(buildForm());  //SE COLOCAL EL LAYOUT DENTRO DE UN PANEL PARA QUE TENGA SU PROPIO SCROLLBAR
 
-        setContent(hltContent);
-        center();
-    }
+            hltContent.addComponents(viewer, panel);
+            hltContent.setExpandRatio(viewer, 0.75f);
+            hltContent.setExpandRatio(panel, 0.25f);
 
-    private Embedded buildViewer() {
-        Embedded viewer = new Embedded(null, new FileResource(file));
-        viewer.setMimeType("application/pdf");
-
-        if (file.getName().contains(".pdf")) {
-            viewer.setType(Embedded.TYPE_BROWSER);
-        } else {
-            viewer.setType(Embedded.TYPE_IMAGE);
+            setContent(hltContent);
+            center();
         }
-        viewer.setHeight("600px");
-        viewer.setWidth("100%");
 
-        return viewer;
-    }
+        private Embedded buildViewer() {
+            Embedded viewer = new Embedded(null, new FileResource(file));
+            viewer.setMimeType("application/pdf");
 
-    private VerticalLayout buildForm() {
-        vltForm = new VerticalLayout();
-        vltForm.setWidth(100.0f, Sizeable.Unit.PERCENTAGE);
-        vltForm.setMargin(true);
-        vltForm.setSpacing(true);
-
-        Component combos = buildFormCombos();
-        vltForm.addComponents(combos);
-        vltForm.setComponentAlignment(combos, Alignment.TOP_CENTER);
-
-        return vltForm;
-    }
-
-    private VerticalLayout buildFormCombos() {
-        vltCombos = new VerticalLayout();
-        vltCombos.setSpacing(true);
-
-        cbxArea = component.createComboBox("Área");
-        cbxArea.addItems(data.getAreaFolders(rutaRaiz, false));
-        cbxArea.addValueChangeListener(event -> {
-            if (cbxArea.getValue() != null) {
-                cbxTipoDocumental.removeAllItems();
-                cbxTipoDocumental.addItems(data.getAreaFolders(rutaRaiz + "/" + event.getProperty().getValue().toString(), false));
-                cbxTipoDocumental.select(null);
-                cbxSubtipoDocumental.clear();
-                cleanMetadatos();
-            }
-        });
-
-        cbxTipoDocumental = component.createComboBox("Tipo Documental");
-        cbxTipoDocumental.addValueChangeListener(event -> {
-            if (cbxTipoDocumental.getValue() != null) {
-                cbxSubtipoDocumental.removeAllItems();
-                cbxSubtipoDocumental.addItems(data.getAreaFolders(rutaRaiz + "/" + cbxArea.getValue().toString() + "/" + event.getProperty().getValue().toString(), true));
-                cbxSubtipoDocumental.select(null);
-                cleanMetadatos();
-            }
-        });
-
-        cbxSubtipoDocumental = component.createComboBox("Subtipo Documental");
-        cbxSubtipoDocumental.addValueChangeListener(event -> {
-            if (cbxSubtipoDocumental.getValue() != null) {
-                cleanMetadatos();
-                vltForm.addComponent(buildFormMetadatos(rutaRaiz + "/" + cbxArea.getValue() + "/" + cbxTipoDocumental.getValue() + "/" + event.getProperty().getValue().toString().concat(".txt")));
+            if (file.getName().contains(".pdf")) {
+                viewer.setType(Embedded.TYPE_BROWSER);
             } else {
-                cleanMetadatos();
+                viewer.setType(Embedded.TYPE_IMAGE);
             }
-        });
-        vltCombos.addComponents(cbxArea, cbxTipoDocumental, cbxSubtipoDocumental);
+            viewer.setHeight("600px");
+            viewer.setWidth("100%");
 
-        return vltCombos;
-    }
-
-    private VerticalLayout buildFormMetadatos(String rutaArchivoJson) {
-        vltMetadatos = new VerticalLayout();
-        vltMetadatos.setSpacing(true);
-
-        arrComponents = new ArrayList<>();
-        subtipoDocumental = data.getDatos(rutaArchivoJson);
-
-        for (Field field : subtipoDocumental.getFields()) {
-            if (field.getType().equals("date")) {
-                DateField tempDateFld = component.createDateField(field.getFieldKey());
-                if (field.getRequired()) {
-                    tempDateFld.setRequired(true);
-                }
-                arrComponents.add(tempDateFld);
-            } else {
-                TextField tempTxtFld = component.createTextField(field.getFieldKey());
-                if (field.getRequired()) {
-                    tempTxtFld.setRequired(true);
-                }
-                arrComponents.add(tempTxtFld);
-            }
+            return viewer;
         }
-        //AGREGAR COMPONENTES AL FORMULARIO
-        for (Object obj : arrComponents) {
-            if (obj.getClass().equals(TextField.class)) {
-                vltMetadatos.addComponent((TextField) obj);
-            } else if (obj.getClass().equals(DateField.class)) {
-                vltMetadatos.addComponent((DateField) obj);
+
+        private VerticalLayout buildForm() {
+            vltForm = new VerticalLayout();
+            vltForm.setWidth(100.0f, Sizeable.Unit.PERCENTAGE);
+            vltForm.setMargin(true);
+            vltForm.setSpacing(true);
+
+            //CONOCER SI EXISTE ARCHIVO TXT
+            String fichero = file.getAbsolutePath().replace(file.getName().substring(file.getName().lastIndexOf('.') + 1), "txt");
+            File ficheroFile = new File(fichero);
+
+            //FORMULARIO PARA ASIGNAR TIPO DOCUMENTAL o FORMULARIO PARA ASIGNAR METADATOS DEL ARCHIVO TXT
+            Component component = ficheroFile.exists() ? buildFormMetadatosFile(ficheroFile) : buildFormCombos();
+            vltForm.addComponents(component);
+            vltForm.setComponentAlignment(component, Alignment.TOP_CENTER);
+
+            return vltForm;
+        }
+
+        private VerticalLayout buildFormCombos() {
+            vltCombos = new VerticalLayout();
+            vltCombos.setSpacing(true);
+
+            cbxArea = component.createComboBox("Área");
+            cbxArea.addItems(data.getAreaFolders(rutaRaiz, false));
+            cbxArea.addValueChangeListener(event -> {
+                if (cbxArea.getValue() != null) {
+                    cbxTipoDocumental.removeAllItems();
+                    cbxTipoDocumental.addItems(data.getAreaFolders(rutaRaiz + "/" + event.getProperty().getValue().toString(), false));
+                    cbxTipoDocumental.select(null);
+                    cbxSubtipoDocumental.clear();
+                    cleanMetadatos();
+                }
+            });
+
+            cbxTipoDocumental = component.createComboBox("Tipo Documental");
+            cbxTipoDocumental.addValueChangeListener(event -> {
+                if (cbxTipoDocumental.getValue() != null) {
+                    cbxSubtipoDocumental.removeAllItems();
+                    cbxSubtipoDocumental.addItems(data.getAreaFolders(rutaRaiz + "/" + cbxArea.getValue().toString() + "/" + event.getProperty().getValue().toString(), true));
+                    cbxSubtipoDocumental.select(null);
+                    cleanMetadatos();
+                }
+            });
+
+            cbxSubtipoDocumental = component.createComboBox("Subtipo Documental");
+            cbxSubtipoDocumental.addValueChangeListener(event -> {
+                if (cbxSubtipoDocumental.getValue() != null) {
+                    cleanMetadatos();
+                    vltForm.addComponent(buildFormMetadatos(rutaRaiz + "/" + cbxArea.getValue() + "/" + cbxTipoDocumental.getValue() + "/" + event.getProperty().getValue().toString().concat(".txt")));
+                } else {
+                    cleanMetadatos();
+                }
+            });
+            vltCombos.addComponents(cbxArea, cbxTipoDocumental, cbxSubtipoDocumental);
+
+            return vltCombos;
+        }
+
+        private VerticalLayout buildFormMetadatos(String rutaArchivoJson) {
+            vltMetadatos = new VerticalLayout();
+            vltMetadatos.setSpacing(true);
+
+            arrComponents = new ArrayList<>();
+            subtipoDocumental = data.getDatos(rutaArchivoJson);
+
+            for (Field field : subtipoDocumental.getFields()) {
+                if (field.getType().equals("date")) {
+                    DateField tempDateFld = component.createDateField(field.getFieldKey());
+                    if (field.getRequired()) {
+                        tempDateFld.setRequired(true);
+                    }
+                    arrComponents.add(tempDateFld);
+                } else {
+                    TextField tempTxtFld = component.createTextField(field.getFieldKey());
+                    if (field.getRequired()) {
+                        tempTxtFld.setRequired(true);
+                    }
+                    arrComponents.add(tempTxtFld);
+                }
             }
+            //AGREGAR COMPONENTES AL FORMULARIO
+            for (Object obj : arrComponents) {
+                if (obj.getClass().equals(TextField.class)) {
+                    vltMetadatos.addComponent((TextField) obj);
+                } else if (obj.getClass().equals(DateField.class)) {
+                    vltMetadatos.addComponent((DateField) obj);
+                }
+            }
+
+            txtSiniestro = component.createTextField("Número Siniestro");
+            vltMetadatos.addComponent(txtSiniestro);
+
+            vltMetadatos.addComponent(buildFooter());
+
+            return vltMetadatos;
+        }
+
+        private VerticalLayout buildFormMetadatosFile(File file) {
+            vltMetadatos = new VerticalLayout();
+            vltMetadatos.setSpacing(true);
+
+            Map<String, String> metadatos = getMetadatos(file);
+            for (Map.Entry<String, String> entry : metadatos.entrySet()) {
+                TextField tempTxtFld = component.createTextField(entry.getKey());
+                tempTxtFld.setValue(entry.getValue());
+                vltMetadatos.addComponent(tempTxtFld);
+            }
+
+            vltMetadatos.addComponent(buildFooter2(file));
+            return vltMetadatos;
+        }
+
+        private HorizontalLayout buildFooter() {
+            HorizontalLayout footer = new HorizontalLayout();
+            footer.setSpacing(true);
+            footer.setWidth(100.0f, Unit.PERCENTAGE);
+
+            btnGuardar = component.createButtonPrimary("Guardar");
+            btnGuardar.addClickListener(e -> {
+                Boolean confirm = this.subirMetadatos(file);
+
+                if (confirm) {
+                    Boolean mover = fileTrans.checkDir(file);
+                    System.out.println("mover = " + mover);
+                    uptadeTable();
+                    notification.createSuccess("Se guardo correctamente");
+                } else {
+                    notification.createFailure("Error al guardar");
+                }
+                close();
+            });
+
+            footer.addComponent(btnGuardar);
+            footer.setComponentAlignment(btnGuardar, Alignment.BOTTOM_RIGHT);
+
+            return footer;
         }
         
-        txtSiniestro = component.createTextField("Número Siniestro");
-        vltMetadatos.addComponent(txtSiniestro);
-                
-        vltMetadatos.addComponent(buildFooter());
+        private HorizontalLayout buildFooter2(File txt) {
+            HorizontalLayout footer = new HorizontalLayout();
+            footer.setSpacing(true);
+            footer.setWidth(100.0f, Unit.PERCENTAGE);
 
-        return vltMetadatos;
-    }
+            btnGuardar = component.createButtonPrimary("Guardar");
+            btnGuardar.addClickListener(e -> {
+                Boolean confirm = this.subirMetadatos2(file);
 
-    private HorizontalLayout buildFooter() {
-        HorizontalLayout footer = new HorizontalLayout();
-        footer.setSpacing(true);
-        footer.setWidth(100.0f, Unit.PERCENTAGE);
-
-        btnGuardar = component.createButtonPrimary("Guardar");
-        btnGuardar.addClickListener(e -> {
-            Boolean confirm = this.subirMetadatos(file);
-
-            if (confirm) {
-                Boolean mover = fileTrans.checkDir(file);
-                System.out.println("mover = " + mover);
-                uptadeTable();
-               notification.createSuccess("Se guardo correctamente");
-            } else {
-                notification.createFailure("Error al guardar");
-            }
-            close();
-        });
-
-        footer.addComponent(btnGuardar);
-        footer.setComponentAlignment(btnGuardar, Alignment.BOTTOM_RIGHT);
-
-        return footer;
-    }
-
-    public void cleanMetadatos() {
-        try {
-            vltForm.removeComponent(vltMetadatos);
-        } catch (Exception e) {
-            // System.out.println("actualizarDatosJson() : " + e);
-        }
-    }
-
-    public Boolean subirMetadatos(File file) {
-        
-        Map<String, String> metadatos = new HashMap<>();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"); //FORMATO TIME-STAMP QUE RECIBE BOX PARA LA FECHA
-
-        System.out.println(arrComponents.size());
-        boolean faltanObligatorios = false;
-        for (Object obj : arrComponents) {
-            if (obj.getClass().equals(TextField.class)) {
-                if ((!((TextField) obj).getValue().equals("")) || !(((TextField) obj).getValue().isEmpty())) {
-                    metadatos.put(((TextField) obj).getCaption(), ((TextField) obj).getValue());
-                } else if (((TextField) obj).isRequired()) {
-                    faltanObligatorios = true;
+                if (confirm) {
+                    Boolean mover = fileTrans.checkDir(file);
+                    Boolean mover2 = fileTrans.checkDir(txt);
+                    System.out.println("mover = " + mover);
+                    uptadeTable();
+                    notification.createSuccess("Se guardo correctamente");
+                } else {
+                    notification.createFailure("Error al guardar");
                 }
-            } else if (obj.getClass().equals(DateField.class)) {
-                try {
-                    if (!((DateField) obj).isEmpty()) {
-                        metadatos.put(((DateField) obj).getCaption(), sdf.format(((DateField) obj).getValue()));
-                    } else if (((DateField) obj).isRequired()) {
+                close();
+            });
+
+            footer.addComponent(btnGuardar);
+            footer.setComponentAlignment(btnGuardar, Alignment.BOTTOM_RIGHT);
+
+            return footer;
+        }
+
+        public void cleanMetadatos() {
+            try {
+                vltForm.removeComponent(vltMetadatos);
+            } catch (Exception e) {
+                // System.out.println("actualizarDatosJson() : " + e);
+            }
+        }
+
+        public Boolean subirMetadatos(File file) {
+
+            Map<String, String> metadatos = new HashMap<>();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"); //FORMATO TIME-STAMP QUE RECIBE BOX PARA LA FECHA
+
+            System.out.println(arrComponents.size());
+            boolean faltanObligatorios = false;
+            for (Object obj : arrComponents) {
+                if (obj.getClass().equals(TextField.class)) {
+                    if ((!((TextField) obj).getValue().equals("")) || !(((TextField) obj).getValue().isEmpty())) {
+                        metadatos.put(((TextField) obj).getCaption(), ((TextField) obj).getValue());
+                    } else if (((TextField) obj).isRequired()) {
                         faltanObligatorios = true;
                     }
-                } catch (NullPointerException nullPointerException) {
-                    System.out.println("nullPointerException -> " + nullPointerException);
-                    //subtipoFormulario.addField(new FieldFormulario(((DateField)obj).getCaption(), ""));
+                } else if (obj.getClass().equals(DateField.class)) {
+                    try {
+                        if (!((DateField) obj).isEmpty()) {
+                            metadatos.put(((DateField) obj).getCaption(), sdf.format(((DateField) obj).getValue()));
+                        } else if (((DateField) obj).isRequired()) {
+                            faltanObligatorios = true;
+                        }
+                    } catch (NullPointerException nullPointerException) {
+                        System.out.println("nullPointerException -> " + nullPointerException);
+                        //subtipoFormulario.addField(new FieldFormulario(((DateField)obj).getCaption(), ""));
+                    }
                 }
             }
+            if (faltanObligatorios) {
+                Notification.show("Datos Faltantes", "Completa los campos requeridos.", Notification.Type.WARNING_MESSAGE);
+            }
+
+            System.out.println("----- INICIO -----");
+
+            CargarDocumentoBox cargarDoc = new CargarDocumentoBox();
+            String strSubtipo = cbxSubtipoDocumental.getValue().toString();
+
+            DocumentoVO documentoVO = new DocumentoVO();
+            documentoVO.setInputStream(file);
+
+            metadatos.put("numeroSiniestro", txtSiniestro.getValue());
+            metadatos.put("area", cbxArea.getValue().toString());
+            metadatos.put("tipodocumental", cbxTipoDocumental.getValue().toString());
+            metadatos.put("operacion", "Tercero");
+
+            documentoVO.setMetadatos(metadatos);
+            //strSubtipo = strSubtipo.substring(0, strSubtipo.indexOf("."));
+            documentoVO.setSubTipoDocumental(strSubtipo);
+            documentoVO.setNombreDocumento(strSubtipo + "_" + file.getName());
+
+            for (Map.Entry<String, String> entry : metadatos.entrySet()) {
+                System.out.format("Atributo : [ %s ], Valor : [ %s ] \n", entry.getKey(), entry.getValue());
+            }
+
+            //Boolean resultado = true;
+            Boolean resultado = cargarDoc.verificarMetadatos(documentoVO);
+
+            System.out.println("----- FIN -----");
+            System.out.println("boolean resultado -> " + resultado);
+            return resultado;
         }
-        if (faltanObligatorios) {
-            Notification.show("Datos Faltantes", "Completa los campos requeridos.", Notification.Type.WARNING_MESSAGE);
+        
+        public Boolean subirMetadatos2(File file){
+            
+            System.out.println("----- INICIO -----");
+
+            CargarDocumentoBox cargarDoc = new CargarDocumentoBox();
+
+            DocumentoVO documentoVO = new DocumentoVO();
+            documentoVO.setInputStream(file);
+            documentoVO.setNombreDocumento(file.getName());
+
+            Map<String, String> metadatos = getMetadatos(file);
+            documentoVO.setMetadatos(metadatos);
+            
+
+            for (Map.Entry<String, String> entry : metadatos.entrySet()) {
+                System.out.format("Atributo : [ %s ], Valor : [ %s ] \n", entry.getKey(), entry.getValue());
+            }
+
+            Boolean resultado = cargarDoc.asignarMetadatos2(documentoVO);
+
+            System.out.println("----- FIN -----");
+            System.out.println("boolean resultado -> " + resultado);
+            
+            return resultado;
         }
 
-        System.out.println("----- INICIO -----");
-
-        CargarDocumentoBox cargarDoc = new CargarDocumentoBox();
-        String strSubtipo = cbxSubtipoDocumental.getValue().toString();
-
-        DocumentoVO documentoVO = new DocumentoVO();
-        documentoVO.setInputStream(file);
-
-        metadatos.put("numeroSiniestro", txtSiniestro.getValue());
-        metadatos.put("area", cbxArea.getValue().toString());
-        metadatos.put("tipodocumental", cbxTipoDocumental.getValue().toString());
-        metadatos.put("operacion", "Tercero");
-
-        documentoVO.setMetadatos(metadatos);
-        //strSubtipo = strSubtipo.substring(0, strSubtipo.indexOf("."));
-        documentoVO.setSubTipoDocumental(strSubtipo);
-        documentoVO.setNombreDocumento(strSubtipo + "_" + file.getName());
-
-        for (Map.Entry<String, String> entry : metadatos.entrySet()) {
-            System.out.format("Atributo : [ %s ], Valor : [ %s ] \n", entry.getKey(), entry.getValue());
-        }
-
-        //Boolean resultado = true;
-        Boolean resultado = cargarDoc.verificarMetadatos(documentoVO);
-
-        System.out.println("----- FIN -----");
-        System.out.println("boolean resultado -> " + resultado);
-        return resultado;
     }
-
-}
-
 
 }
